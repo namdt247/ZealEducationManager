@@ -1956,6 +1956,8 @@
     <Content Include="Asset\Admin\vendor\waypoints\lib\waypoints.debug.js" />
     <Content Include="Asset\Admin\vendor\waypoints\lib\zepto.waypoints.min.js" />
     <Content Include="Asset\Admin\vendor\waypoints\licenses.txt" />
+    <Content Include="Asset\Frontend\css\frontend.css" />
+    <Content Include="Asset\Image\logo.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2042,8 +2044,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Asset\Frontend\" />
-    <Folder Include="Asset\Image\" />
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
