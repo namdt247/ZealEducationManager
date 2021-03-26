@@ -77,6 +77,14 @@ namespace Zeal_Institute.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Batch> Batches { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
