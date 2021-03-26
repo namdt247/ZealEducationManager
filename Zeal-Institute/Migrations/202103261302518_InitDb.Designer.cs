@@ -13,7 +13,7 @@ namespace Zeal_Institute.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202103261144388_InitDb"; }
+            get { return "202103261302518_InitDb"; }
         }
         
         string IMigrationMetadata.Source
