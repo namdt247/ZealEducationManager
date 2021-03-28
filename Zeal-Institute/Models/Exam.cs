@@ -12,12 +12,8 @@ namespace Zeal_Institute.Models
     {
         public int Id { get; set; }
 
-        [DisplayName("StudentId")]
-        public string ApplicationUserId { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
-
-        public int CourseId { get; set; }
-        public virtual Course Course { get; set; }
+        public int BatchId { get; set; }
+        public virtual Batch Batch { get; set; }
 
         [DataType(DataType.Date)]
         [Column(TypeName = "date")]
@@ -28,8 +24,6 @@ namespace Zeal_Institute.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         [DisplayName("Start Time")]
         public TimeSpan StartTime { get; set; }
-
-        public float Mark { get; set; }
 
         public ExamStatus Status { get; set; }
 
@@ -42,5 +36,7 @@ namespace Zeal_Institute.Models
             [Display(Name = "On Going")]
             ONGOING
         }
+
+        public virtual ICollection<ExamDetail> ExamDetails { get; set; }
     }
 }

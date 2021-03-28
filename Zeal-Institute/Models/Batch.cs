@@ -53,5 +53,10 @@ namespace Zeal_Institute.Models
             [Display(Name = "Deleted")]
             DELETED
         }
+
+        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<Discount> Discounts { get; set; }
+        public virtual ICollection<Certificate> Certificates { get; set; }
+        public virtual ICollection<Reminder> Reminders { get; set; }
     }
 }

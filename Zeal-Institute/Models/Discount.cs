@@ -10,12 +10,10 @@ namespace Zeal_Institute.Models
     public class Discount
     {
         public int Id { get; set; }
-
-        [DisplayName("StudentId")]
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public int CourseId { get; set; }
-        public virtual Course Course { get; set; }
+        public int BatchId { get; set; }
+        public virtual Batch Batch { get; set; }
         public double CoursePrice { get; set; }
         public double DiscountValue { get; set; }
 
