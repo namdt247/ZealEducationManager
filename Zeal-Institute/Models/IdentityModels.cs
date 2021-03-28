@@ -85,6 +85,7 @@ namespace Zeal_Institute.Models
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
+        public DbSet<ExamDetail> ExamDetails { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
