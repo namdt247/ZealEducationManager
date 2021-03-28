@@ -15,12 +15,9 @@ namespace Zeal_Institute.Models
         [DisplayName("StudentId")]
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-
-        public int CourseId { get; set; }
-        public virtual Course Course { get; set; }
-
+        public int BatchId { get; set; }
+        public virtual Batch Batch { get; set; }
         public double AmountPayable { get; set; }
-
         public double AmountPaid { get; set; }
 
         public PaymentType Type { get; set; }

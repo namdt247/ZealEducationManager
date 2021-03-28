@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103261144388_InitDb.cs" />
-    <Compile Include="Migrations\202103261144388_InitDb.Designer.cs">
-      <DependentUpon>202103261144388_InitDb.cs</DependentUpon>
+    <Compile Include="Migrations\202103280353353_InitDb.cs" />
+    <Compile Include="Migrations\202103280353353_InitDb.Designer.cs">
+      <DependentUpon>202103280353353_InitDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -188,6 +188,7 @@
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamDetail.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -214,6 +215,10 @@
     <Content Include="Asset\Admin\vendor\chartist-plugin-tooltips\dist\chartist-plugin-tooltip.min.js" />
     <Content Include="Asset\Admin\vendor\chartist\dist\chartist.min.css" />
     <Content Include="Asset\Admin\vendor\chartist\dist\chartist.min.js" />
+    <Content Include="Asset\Admin\vendor\datatables\datatables.min.css" />
+    <Content Include="Asset\Admin\vendor\datatables\datatables.min.js" />
+    <Content Include="Asset\Admin\vendor\datatables\jquery.dataTables.min.css" />
+    <Content Include="Asset\Admin\vendor\datatables\jquery.dataTables.min.js" />
     <Content Include="Asset\Admin\vendor\fortawesome\fontawesome-free\css\all.min.css" />
     <Content Include="Asset\Admin\vendor\fortawesome\fontawesome-free\css\brands.min.css" />
     <Content Include="Asset\Admin\vendor\fortawesome\fontawesome-free\css\fontawesome.min.css" />
@@ -1958,6 +1963,8 @@
     <Content Include="Asset\Admin\vendor\waypoints\lib\waypoints.debug.js" />
     <Content Include="Asset\Admin\vendor\waypoints\lib\zepto.waypoints.min.js" />
     <Content Include="Asset\Admin\vendor\waypoints\licenses.txt" />
+    <Content Include="Asset\Frontend\css\frontend.css" />
+    <Content Include="Asset\Image\logo.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2006,6 +2013,7 @@
     <Content Include="Areas\Admin\Views\Batches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Batches\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -2054,8 +2062,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Asset\Frontend\" />
-    <Folder Include="Asset\Image\" />
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
@@ -2072,8 +2078,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103261144388_InitDb.resx">
-      <DependentUpon>202103261144388_InitDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103280353353_InitDb.resx">
+      <DependentUpon>202103280353353_InitDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

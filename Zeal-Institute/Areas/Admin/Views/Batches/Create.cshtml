@@ -5,93 +5,86 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<p class="text-left">
+    <a href="@Url.Action("Index", "Batches")" class="text-gray-700"><i class="fas fa-angle-left me-2"></i> Back to List</a>
+</p>
+<h4>Create batch</h4>
 
+<div class="card card-body shadow-sm table-wrapper mb-3">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>Batch</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "invalid-feedback" })
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter name", autocomplete = "off", required = "" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "invalid-feedback" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter code", autocomplete = "off", required = "" } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "invalid-feedback" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.CourseId, "Course", htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
                 @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "invalid-feedback" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ListStudent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.ListStudent, "List student", htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.ListStudent, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ListStudent, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ListStudent, "", new { @class = "invalid-feedback" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "invalid-feedback" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "invalid-feedback" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "invalid-feedback" })
+            </div>
+        </div>
+
+        @*<div class="form-group mb-3">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "" })
+            <div class="col-md-6">
                 @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "invalid-feedback" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <div class="mt-3">
+            <button class="btn btn-sm mb-2 me-2 btn-outline-success" type="submit"><i class="far fa-save me-2"></i>Save</button>
         </div>
     </div>
-}
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

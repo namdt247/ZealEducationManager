@@ -54,11 +54,11 @@ namespace Zeal_Institute.Models
             }
         }
 
-        public virtual ICollection<Exam> Exams { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual ICollection<Certificate> Certificates { get; set; }
         public virtual ICollection<Reminder> Reminders { get; set; }
+        public virtual ICollection<ExamDetail> ExamDetails { get; set; }
 
         public UserStatus Status { get; set; }
 
@@ -77,6 +77,15 @@ namespace Zeal_Institute.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Batch> Batches { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
+        public DbSet<ExamDetail> ExamDetails { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -87,8 +96,8 @@ namespace Zeal_Institute.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Zeal_Institute.Models.Course> Courses { get; set; }
+        // public System.Data.Entity.DbSet<Zeal_Institute.Models.Course> Courses { get; set; }
 
-        public System.Data.Entity.DbSet<Zeal_Institute.Models.Batch> Batches { get; set; }
+        // public System.Data.Entity.DbSet<Zeal_Institute.Models.Batch> Batches { get; set; }
     }
 }
