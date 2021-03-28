@@ -46,7 +46,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Code,Price,Description,Status")] Course course)
+        public ActionResult Create([Bind(Include = "Id,Name,Code,Price,Thumbnail,Description,Status")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Code,Price,Description,Status")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,Name,Code,Price,Thumbnail,Description,Status")] Course course)
         {
             if (ModelState.IsValid)
             {

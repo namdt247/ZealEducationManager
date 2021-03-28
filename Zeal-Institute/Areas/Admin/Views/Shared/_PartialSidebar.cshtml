@@ -62,37 +62,13 @@
                 </div>
             </li>
             <li class="nav-item">
-                <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#submenu-table">
-                    <span>
-                        <span class="sidebar-icon"><span class="fas fa-clipboard-list"></span></span>
-                        <span class="sidebar-text">Manager Batch</span>
-                    </span>
-                    <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
-                </span>
-                @*<div class="multi-level collapse " role="list"
-                        id="submenu-table" aria-expanded="false">
-                    <ul class="flex-column nav">
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Bảng điểm theo kỳ</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Bảng điểm tổng hợp</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Lịch sử học</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>*@
+                <a class="nav-link" href="@Url.Action("Index", "Batches")">
+                    <span class="sidebar-icon"><span class="fas fa-money-bill-alt"></span></span>
+                    <span class="sidebar-text">Manager Batch</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link" href="@Url.Action("Index", "Courses")">
                     <span class="sidebar-icon"><span class="fas fa-money-bill-alt"></span></span>
                     <span class="sidebar-text">Manager Course</span>
                 </a>
