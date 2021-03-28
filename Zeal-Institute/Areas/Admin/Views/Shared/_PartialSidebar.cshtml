@@ -9,7 +9,7 @@
                 </div>
                 <div class="d-block name_user">
                     <h2 class="h6">
-                        Xin chào, Admin
+                        Hi, Admin
                         @*@if (User.Identity.IsAuthenticated)
                         {
                             @User.Identity.Name
@@ -30,10 +30,10 @@
                     <span class="sidebar-text">Dashboard</span>
                 </a>
             </li>
-           
+
             <li class="nav-item">
                 <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#submenu-pages">
+                      data-bs-toggle="collapse" data-bs-target="#submenu-pages">
                     <span>
                         <span class="sidebar-icon"><span class="far fa-user"></span></span>
                         <span class="sidebar-text">Manager User</span>
@@ -41,7 +41,7 @@
                     <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
                 </span>
                 <div class="multi-level collapse " role="list"
-                        id="submenu-pages" aria-expanded="false">
+                     id="submenu-pages" aria-expanded="false">
                     <ul class="flex-column nav">
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("GetListTimetableStudent", "Timetable")">
@@ -62,34 +62,10 @@
                 </div>
             </li>
             <li class="nav-item">
-                <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#submenu-table">
-                    <span>
-                        <span class="sidebar-icon"><span class="fas fa-clipboard-list"></span></span>
-                        <span class="sidebar-text">Manager Batch</span>
-                    </span>
-                    <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
-                </span>
-                @*<div class="multi-level collapse " role="list"
-                        id="submenu-table" aria-expanded="false">
-                    <ul class="flex-column nav">
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Bảng điểm theo kỳ</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Bảng điểm tổng hợp</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Lịch sử học</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>*@
+                <a class="nav-link" href="">
+                    <span class="sidebar-icon"><span class="fas fa-money-bill-alt"></span></span>
+                    <span class="sidebar-text">Manager Batch</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">
