@@ -12,11 +12,6 @@ namespace Zeal_Institute.Models
         public int Id { get; set; }
 
         public virtual ICollection<Batch> Batches { get; set; }
-        public virtual ICollection<Exam> Exams { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<Discount> Discounts { get; set; }
-        public virtual ICollection<Certificate> Certificates { get; set; }
-        public virtual ICollection<Reminder> Reminders { get; set; }
 
         [StringLength(255)]
         [Required]
@@ -27,6 +22,9 @@ namespace Zeal_Institute.Models
         public string Code { get; set; }
 
         public double Price { get; set; }
+
+        [Column(TypeName = "TEXT")]
+        public string Thumbnail { get; set; }
 
         [Column(TypeName = "TEXT")]
         [Display(Name = "Description")]
