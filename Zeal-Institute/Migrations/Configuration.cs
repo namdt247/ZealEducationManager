@@ -115,6 +115,8 @@ namespace Zeal_Institute.Migrations
             courses.Add(new Course() { Id = 5, Name = "Kotlin Android", Code = "KOTLIN", Price = 450, Description = "hello", Status = Course.CourseStatus.ACTIVE });
             context.Courses.AddRange(courses);
 
+
+
             base.Seed(context);
         }
     }
