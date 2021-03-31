@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\BatchesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -2014,6 +2015,12 @@
     <Content Include="Areas\Admin\Views\Batches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Batches\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\ListFaculty.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
