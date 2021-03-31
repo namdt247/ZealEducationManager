@@ -171,6 +171,7 @@
     <Compile Include="Areas\Admin\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\BatchesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExamsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -2021,6 +2022,11 @@
     <Content Include="Areas\Admin\Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\ListFaculty.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
