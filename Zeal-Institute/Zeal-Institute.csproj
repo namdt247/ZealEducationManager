@@ -171,6 +171,7 @@
     <Compile Include="Areas\Admin\Controllers\BatchesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2012,6 +2013,7 @@
     <Content Include="Areas\Admin\Views\Batches\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Batches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Batches\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

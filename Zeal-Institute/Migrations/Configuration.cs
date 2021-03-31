@@ -39,7 +39,10 @@ namespace Zeal_Institute.Migrations
             context.Database.ExecuteSqlCommand(" DBCC CHECKIDENT('Payments', RESEED, 0)");
             context.Database.ExecuteSqlCommand(" DBCC CHECKIDENT('Reminders', RESEED, 0)");
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (RoleManager == null)
+            {
+                RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            }
 
             if (UserManager == null)
             {
@@ -50,10 +53,10 @@ namespace Zeal_Institute.Migrations
             var role2 = new IdentityRole { Name = "Manager" };
             var role3 = new IdentityRole { Name = "Faculty" };
             var role4 = new IdentityRole { Name = "Student" };
-            roleManager.Create(role1);
-            roleManager.Create(role2);
-            roleManager.Create(role3);
-            roleManager.Create(role4);
+            RoleManager.Create(role1);
+            RoleManager.Create(role2);
+            RoleManager.Create(role3);
+            RoleManager.Create(role4);
 
             // create user
             var passwordHash = new PasswordHasher();
