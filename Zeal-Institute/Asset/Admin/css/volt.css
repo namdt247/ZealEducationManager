@@ -6971,7 +6971,9 @@ textarea.form-control-lg {
 .card-img, .card-img-bottom, .card-img-top {
     width: 100%
 }
-
+.card-img-top {
+    height: 100%;
+}
 .card-img, .card-img-top {
     border-top-left-radius: .9375rem;
     border-top-right-radius: .9375rem
@@ -24753,7 +24755,8 @@ textarea.form-control-lg {
 }
 
 .sidebar .badge, .sidebar .link-arrow, .sidebar .notification-count, .sidebar .sidebar-text {
-    opacity: 1
+    opacity: 1;
+    display: inline-block;
 }
 
 .sidebar .sidebar-text-contracted {
@@ -24765,20 +24768,23 @@ textarea.form-control-lg {
 }
 
     .sidebar.contracted .badge, .sidebar.contracted .link-arrow, .sidebar.contracted .sidebar-text {
-        opacity: 0
+        opacity: 0;
+        display: none;
     }
-
-    .sidebar.contracted .notification-count {
-        opacity: 1;
-        position: absolute;
-        top: 0;
-        left: 40px;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        font-size: .7rem;
-        padding: .2rem
+    .sidebar.contracted .nav-item .nav-link {
+        width: 44px;
     }
+.sidebar.contracted .notification-count {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: .7rem;
+    padding: .2rem
+}
 
     .sidebar.contracted .nav-item {
         position: relative
@@ -24842,7 +24848,7 @@ textarea.form-control-lg {
 }
 
 .content {
-    overflow: visible;
+    overflow: hidden;
     padding: 0 1rem 0 1rem;
     transition: all .3s
 }
@@ -24994,10 +25000,10 @@ label {
     }
 
     .user-avatar.lg-avatar {
-        height: 3.5rem;
-        width: 3.5rem;
-        min-height: 3.5rem;
-        min-width: 3.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        min-height: 2.5rem;
+        min-width: 2.5rem;
         font-size: .75rem
     }
 

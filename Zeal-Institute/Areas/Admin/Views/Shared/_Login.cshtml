@@ -1,11 +1,12 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
 
+<html>
 <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Zeal-Institute</title>
+    <title>Student Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="120x120" href="../../assets/img/favicon/apple-touch-icon.png">
@@ -24,73 +25,29 @@
 
     <!-- Notyf -->
     <link type="text/css" href="~/Asset/Admin/vendor/notyf/notyf.min.css" rel="stylesheet">
-    <link type="text/css" href="~/Asset/Admin/vendor/datatables/datatables.min.css" rel="stylesheet">
 
     <!-- Volt CSS -->
     <link type="text/css" href="~/Asset/Admin/css/volt.css" rel="stylesheet">
-    @* @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr") *@
-
 </head>
-
 <body>
-
-    @Html.Partial("_PartialSidebar")
-
-    <main class="content">
-        @Html.Partial("_PartialHeaderMenu")
-
+    <main>
         @RenderBody()
-
     </main>
-
-    <!-- Core -->
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Asset/Admin/vendor/popperjs/core/dist/umd/popper.min.js"></script>
     <script src="~/Asset/Admin/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Vendor JS -->
     <script src="~/Asset/Admin/vendor/onscreen/dist/on-screen.umd.min.js"></script>
-
-    <!-- Slider -->
     <script src="~/Asset/Admin/vendor/nouislider/distribute/nouislider.min.js"></script>
-
-    <!-- Smooth scroll -->
     <script src="~/Asset/Admin/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-
-    <!-- Charts -->
     <script src="~/Asset/Admin/vendor/chartist/dist/chartist.min.js"></script>
     <script src="~/Asset/Admin/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-
-    <!-- Datepicker -->
     <script src="~/Asset/Admin/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
-
-    <!-- Sweet Alerts 2 -->
     <script src="~/Asset/Admin/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
-    <!-- Moment JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-
-    <!-- Vanilla JS Datepicker -->
     <script src="~/Asset/Admin/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
-
-    <!-- Notyf -->
     <script src="~/Asset/Admin/vendor/notyf/notyf.min.js"></script>
-
-    <!-- Simplebar -->
     <script src="~/Asset/Admin/vendor/simplebar/dist/simplebar.min.js"></script>
-
-    <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="~/Asset/Admin/vendor/datatables/datatables.min.js"></script>
-
-    <!-- Volt JS -->
-    <script src="~/Asset/Admin/js/volt.js"></script>
-    @*@Scripts.Render("~/bundles/jquery")*@
-    @*@Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Asset/Admin/assets/js/volt.js"></script>
     @RenderSection("scripts", required: false)
-
-    @*@RenderSection("MyScript", required: false)*@
 </body>
-
 </html>

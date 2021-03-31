@@ -95,5 +95,9 @@ namespace Zeal_Institute.Models
         {
             return new ApplicationDbContext();
         }
+
+        // public System.Data.Entity.DbSet<Zeal_Institute.Models.Course> Courses { get; set; }
+
+        // public System.Data.Entity.DbSet<Zeal_Institute.Models.Batch> Batches { get; set; }
     }
 }
