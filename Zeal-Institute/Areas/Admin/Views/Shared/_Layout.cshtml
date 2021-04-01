@@ -28,6 +28,8 @@
 
     <!-- Volt CSS -->
     <link type="text/css" href="~/Asset/Admin/css/volt.css" rel="stylesheet">
+    <link type="text/css" href="~/Asset/Admin/vendor/select2/css/select2.min.css" rel="stylesheet">
+    
     @* @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr") *@
 
@@ -45,7 +47,7 @@
     </main>
 
     <!-- Core -->
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
     <script src="~/Asset/Admin/vendor/popperjs/core/dist/umd/popper.min.js"></script>
     <script src="~/Asset/Admin/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -84,10 +86,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="~/Asset/Admin/vendor/datatables/datatables.min.js"></script>
 
+
     <!-- Volt JS -->
-    <script src="~/Asset/Admin/js/volt.js"></script>
     @*@Scripts.Render("~/bundles/jquery")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Asset/Admin/js/volt.js"></script>
     @RenderSection("scripts", required: false)
 
     @*@RenderSection("MyScript", required: false)*@

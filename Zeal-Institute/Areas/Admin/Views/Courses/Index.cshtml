@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int count = 0;
 }
 
 <h4>List course</h4>
@@ -18,51 +19,36 @@
     <table class="display" id="table_id">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Code)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Thumbnail)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>*@
+                <th class="text-center">#</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
+                count++;
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                    <td class="text-center">
+                        @count
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Thumbnail)
+                        @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>*@
-                    <td>
-                        <a href="@Url.Action("Edit", "Courses", new { id = item.Id })" class="mr-4 text-warning"><i class="fa fa-pencil-square-o"></i></a>
+                    <td class="text-right">
+                        <a href="@Url.Action("Edit", "Courses", new { id = item.Id })" class="me-4 text-warning"><i class="fa fa-pencil-alt"></i></a>
                         <a href="@Url.Action("Delete", "Courses", new { id = item.Id })" class="text-danger"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>

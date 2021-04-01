@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -127,6 +128,23 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult GetListStudent(string searchTerm)
+        {
+            Debug.WriteLine(searchTerm);
+            var listStudent = db.Users.ToList();
+            if (searchTerm != null)
+            {
+                listStudent = db.Users.Where(x => x.UserName.Contains(searchTerm)).ToList();
+            }
+            var modifiedData = listStudent.Select(x => new {
+                id = x.Id,
+                text = x.UserName
+            });
+            Debug.WriteLine(modifiedData);
+            return Json(modifiedData, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

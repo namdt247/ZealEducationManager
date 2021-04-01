@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int count = 0;
 }
 
 <h4>List batch</h4>
@@ -19,64 +20,41 @@
     <table class="display" id="table_id">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Course.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Code)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ListStudent)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateStart)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateEnd)
-                </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>*@
+                <th class="text-center">#</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th class="text-center">Date start</th>
+                <th class="text-center">Date end</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
+           @foreach (var item in Model)
+           {
+               count++;
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Course.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                    <td class="text-center">
+                        @count
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ListStudent)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => item.Course.Name)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.DateStart)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.DateEnd)
                     </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>*@
-                    <td>
-                        <a href="@Url.Action("Edit", "Batches", new { id = item.Id })" class="mr-4 text-warning"><i class="fa fa-pencil-square-o"></i></a>
-                        <a href="@Url.Action("Delete", "Batches", new { id = item.Id })" class="text-danger"><i class="fa fa-trash"></i></a>
+                    <td class="text-right">
+                        <a href="@Url.Action("Edit", "Batches", new { id = item.Id })" class="me-4 text-warning" title="Edit"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="@Url.Action("Delete", "Batches", new { id = item.Id })" class="text-danger" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             }
