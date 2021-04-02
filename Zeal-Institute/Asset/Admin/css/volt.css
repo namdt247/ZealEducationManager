@@ -1,4 +1,4 @@
-
+@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap);
 
 .datepicker {
     display: none
@@ -31347,3 +31347,41 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     .validation-summary-errors ul{
         list-style: none;
     }
+
+.paginate_button {
+    position: relative !important;
+    display: block !important;
+    padding: .5rem .75rem !important;
+    margin-left: -1px !important;
+    line-height: 1.25 !important;
+    color: #007bff !important;
+    background-color: #fff !important;
+    border: 1px solid #dee2e6 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background: none !important;
+    color: #0056b3 !important;
+}
+.dataTables_paginate {
+    justify-content: flex-end !important;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+.paginate_button:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover{
+    z-index: 2 !important;
+    color: #0056b3 !important;
+    text-decoration: none !important;
+    background-color: #e9ecef !important;
+    border-color: #dee2e6 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    z-index: 3 !important;
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    color: #0056b3 !important;
+}

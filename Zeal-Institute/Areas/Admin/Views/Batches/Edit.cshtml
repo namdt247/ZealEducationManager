@@ -15,59 +15,47 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                
+
                 <div class="col-sm-6 col-md-6">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "invalid-feedback" })
                     @Html.HiddenFor(model => model.Id)
-
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Code", autocomplete = "off", required = "" } })
+                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "invalid-feedback" })
+                    </div>
+                    <div class="mb-4">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter name", autocomplete = "off", required = "" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-4">
-                        @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.CourseId, "Course", htmlAttributes: new { @class = "" })
                         @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "invalid-feedback" })
                     </div>
-
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.ListStudent, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.ListStudent, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ListStudent, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.ListStudent, "List student", htmlAttributes: new { @class = "" })
+                        <select class="form-control" id="liststudent"></select>
+                        @Html.ValidationMessageFor(model => model.ListStudent, "", new { @class = "invalid-feedback" })
                     </div>
-
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-4">
-                        @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "" })
                         @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "" })
                         @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "invalid-feedback" })
                     </div>
-
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "invalid-feedback" })
                     </div>
-
                     <div class="mt-3">
                         <button class="btn btn-sm mb-2 me-2 btn-outline-success" type="submit"><i class="far fa-save me-2"></i>Save</button>
                     </div>
@@ -76,4 +64,32 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Asset/Admin/vendor/select2/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#liststudent').select2({
+                placeholder: "Student",
+                //multiple: true,
+                ajax: {
+                    url: "/Admin/Batches/GetListStudent",
+                    dataType: "json",
+                    data: function (params) {
+                        return {
+                            searchTerm: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        console.log(data)
+                        return {
+                            results: data
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+}
 
