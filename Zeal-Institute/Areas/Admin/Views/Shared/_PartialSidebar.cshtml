@@ -94,23 +94,23 @@
                      id="submenu-financial" aria-expanded="false">
                     <ul class="flex-column nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="@Url.Action("ListFee", "Reports")">
                                 <span class="sidebar-text">Fee Collected</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">
-                                <span class="sidebar-text">Fine collected</span>
+                            <a class="nav-link" href="@Url.Action("ListFine", "Reports")">
+                                <span class="sidebar-text">Fine Collected</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-text">Outstanding payment</span>
+                            <a class="nav-link" href="@Url.Action("ListOutstanding", "Reports")">
+                                <span class="sidebar-text">Outstanding Payment</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-text">Payment reminder</span>
+                            <a class="nav-link" href="@Url.Action("ListReminder", "Reports")">
+                                <span class="sidebar-text">Payment Reminder</span>
                             </a>
                         </li>
                     </ul>

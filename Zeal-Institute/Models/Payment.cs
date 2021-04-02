@@ -51,5 +51,11 @@ namespace Zeal_Institute.Models
             [Display(Name = "Deleted")]
             DELETED
         }
+
+        public double RemainingAmount(double AmountPayable, double AmountPaid)
+        {
+            var RemainingAmount = AmountPayable - AmountPaid;
+            return RemainingAmount;
+        }
     }
 }

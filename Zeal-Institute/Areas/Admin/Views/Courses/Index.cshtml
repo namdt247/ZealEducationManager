@@ -6,7 +6,7 @@
     int count = 0;
 }
 
-<h4>List course</h4>
+<h4>List Courses</h4>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     <div>
@@ -20,10 +20,9 @@
         <thead>
             <tr>
                 <th class="text-center">#</th>
-                <th>Code</th>
                 <th>Name</th>
+                <th>Code</th>
                 <th>Price</th>
-                <th>Description</th>
                 <th></th>
             </tr>
         </thead>
@@ -36,16 +35,13 @@
                         @count
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Code)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        @Html.DisplayFor(modelItem => item.Code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td class="text-right">
                         <a href="@Url.Action("Edit", "Courses", new { id = item.Id })" class="me-4 text-warning"><i class="fa fa-pencil-alt"></i></a>
