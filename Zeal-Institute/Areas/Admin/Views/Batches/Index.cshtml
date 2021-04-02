@@ -6,7 +6,7 @@
     int count = 0;
 }
 
-<h4>List batch</h4>
+<h4>List Batches</h4>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     <div>
@@ -21,8 +21,8 @@
         <thead>
             <tr>
                 <th class="text-center">#</th>
-                <th>Code</th>
                 <th>Name</th>
+                <th>Code</th>
                 <th>Course</th>
                 <th class="text-center">Date start</th>
                 <th class="text-center">Date end</th>
@@ -38,10 +38,10 @@
                         @count
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Code)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.Code)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Course.Name)

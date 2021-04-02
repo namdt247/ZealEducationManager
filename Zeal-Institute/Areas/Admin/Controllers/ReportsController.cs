@@ -11,9 +11,28 @@ namespace Zeal_Institute.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Reports
-        public ActionResult Index()
+        public ActionResult ListFee()
         {
-            return View();
+            var ListFee = db.Payments.Where(x => x.Type == Payment.PaymentType.FEE).ToList();
+            return View(ListFee);
+        }
+
+        public ActionResult ListFine()
+        {
+            var ListFine = db.Payments.Where(x => x.Type == Payment.PaymentType.FINE).ToList();
+            return View(ListFine);
+        }
+
+        public ActionResult ListOutstanding()
+        {
+            var ListOutstanding = db.Payments.Where(x => x.AmountPaid < x.AmountPayable).ToList();
+            return View(ListOutstanding);
+        }
+
+        public ActionResult ListReminder()
+        {
+            var ListReminder = db.Reminders.ToList();
+            return View(ListReminder);
         }
     }
 }

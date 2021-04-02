@@ -2016,7 +2016,6 @@
     <Content Include="Areas\Admin\Views\Batches\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Batches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Batches\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Reports\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\Details.cshtml" />
@@ -2028,6 +2027,10 @@
     <Content Include="Areas\Admin\Views\Exams\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Exams\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Exams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListFee.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListFine.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListOutstanding.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListReminder.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
