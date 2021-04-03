@@ -3,36 +3,29 @@
 @{
     ViewBag.Title = "ListFee";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var count = 0;
 }
 
-<h2>Fee Collected</h2>
+<h4 class="py-3">Fee Collected</h4>
 
-<div class="card card-body shadow-sm table-wrapper table-responsive">
-    <table class="display" id="table_id">
-        <thead>
+<div class="card shadow-sm table-wrapper table-responsive mb-3">
+    <table class="display table table-flush" id="table_id">
+        <thead class="thead-light">
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser.FullName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Batch.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AmountPayable)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AmountPaid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PayDate)
-                </th>
-                <th></th>
+                <th class="text-center">#</th>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Amount payable</th>
+                <th>Amount Paid</th>
+                <th>Pay Date</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
+                count++;
                 <tr>
+                    <td class="text-center"> @count</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
                     </td>
@@ -40,18 +33,13 @@
                         @Html.DisplayFor(modelItem => item.Batch.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AmountPayable)
+                        $@Html.DisplayFor(modelItem => item.AmountPayable)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AmountPaid)
+                        $@Html.DisplayFor(modelItem => item.AmountPaid)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PayDate)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     </td>
                 </tr>
             }

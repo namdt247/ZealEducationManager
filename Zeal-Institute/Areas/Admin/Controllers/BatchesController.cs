@@ -147,16 +147,15 @@ namespace Zeal_Institute.Areas.Admin.Controllers
 
         public JsonResult GetListStudent(string searchTerm)
         {
-            //var role = roleManager.FindByName("Student").Users.First();
-            //var listStudent = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
-            var listStudent = db.Users.ToList();
+            var role = roleManager.FindByName("Student").Users.First();
+            var listStudent = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
             if (searchTerm != null)
             {
                 listStudent = db.Users.Where(x => x.FullName.Contains(searchTerm)).ToList();
             }
             var modifiedData = listStudent.Select(x => new {
                 id = x.Id,
-                text = x.UserName
+                text = x.FullName + " - " + x.RollNumber
             });
             Debug.WriteLine(modifiedData);
             return Json(modifiedData, JsonRequestBehavior.AllowGet);

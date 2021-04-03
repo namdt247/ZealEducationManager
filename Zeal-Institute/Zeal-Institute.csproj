@@ -172,6 +172,7 @@
     <Compile Include="Areas\Admin\Controllers\BatchesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeedbacksController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -183,6 +184,10 @@
     <Compile Include="Migrations\202103280353353_InitDb.cs" />
     <Compile Include="Migrations\202103280353353_InitDb.Designer.cs">
       <DependentUpon>202103280353353_InitDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104021202134_abc.cs" />
+    <Compile Include="Migrations\202104021202134_abc.Designer.cs">
+      <DependentUpon>202104021202134_abc.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2031,6 +2036,11 @@
     <Content Include="Areas\Admin\Views\Reports\ListFine.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\ListOutstanding.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\ListReminder.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedbacks\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedbacks\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedbacks\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedbacks\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedbacks\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2100,6 +2110,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103280353353_InitDb.resx">
       <DependentUpon>202103280353353_InitDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104021202134_abc.resx">
+      <DependentUpon>202104021202134_abc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
