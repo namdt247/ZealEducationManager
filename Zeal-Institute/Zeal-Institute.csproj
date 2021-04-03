@@ -2031,6 +2031,11 @@
     <Content Include="Areas\Admin\Views\Reports\ListFine.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\ListOutstanding.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\ListReminder.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\EndBatches.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\StartBatches.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListDiscount.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListStudent.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\ListCertificate.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

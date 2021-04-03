@@ -37,12 +37,29 @@ namespace Zeal_Institute.Models
 
         public enum CertificateStatus
         {
-            [Display(Name = "Active")]
-            ACTIVE,
-            [Display(Name = "Deactive")]
-            DEACTIVE,
+            [Display(Name = "Pending")]
+            PENDING,
+            [Display(Name = "Done")]
+            DONE,
             [Display(Name = "Deleted")]
             DELETED
+        }
+
+        public double Mark(int BatchId, string UserId)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var exam = db.Exams.FirstOrDefault(x => x.BatchId == BatchId);
+                if (exam != null)
+                {
+                    var StudentExam = db.ExamDetails.FirstOrDefault(x => x.ExamId == exam.Id && x.ApplicationUserId == UserId);
+                    if (StudentExam != null)
+                    {
+                        return StudentExam.Mark;
+                    }
+                }
+                return 0;
+            }
         }
     }
 }
