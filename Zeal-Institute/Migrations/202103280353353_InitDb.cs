@@ -33,7 +33,7 @@ namespace Zeal_Institute.Migrations
                         ApplicationUserId = c.String(maxLength: 128),
                         BatchId = c.Int(nullable: false),
                         RegistrationDate = c.DateTime(nullable: false, storeType: "date"),
-                        ReceivedDate = c.DateTime(nullable: false, storeType: "date"),
+                        ReceivedDate = c.DateTime(nullable: true, storeType: "date"),
                         Note = c.String(maxLength: 255),
                         Status = c.Int(nullable: false),
                     })

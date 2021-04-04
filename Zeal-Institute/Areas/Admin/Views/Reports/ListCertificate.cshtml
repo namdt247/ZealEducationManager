@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Zeal_Institute.Models.Certificate>
+
+@{
+    ViewBag.Title = "ListCertificate";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Certificate</h2>
+
+<div class="card card-body shadow-sm table-wrapper table-responsive">
+    <table class="display" id="table_id">
+        <thead>
+            <tr>
+                <th>
+                    Student
+                </th>
+                <th>
+                    Batch
+                </th>
+                <th>
+                    Course
+                </th>
+                <th>
+                    Mark
+                </th>
+                <th>
+                    Registration Date
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Batch.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Batch.Course.Name)
+                    </td>
+                    <td>
+                        @item.Mark(item.BatchId, item.ApplicationUserId)%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Process", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+}

@@ -65,19 +65,19 @@ namespace Zeal_Institute.Migrations
             // date now
             DateTime date = DateTime.Now;
 
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "1", FullName = "Admin", Email = "admin@gmail.com", UserName = "admin@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Admin", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "Admin", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "2", FullName = "Hong Hanh", Email = "honghanh@gmail.com", UserName = "honghanh@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Giao Vu", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "2", RollNumber = "MSG1", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "3", FullName = "Dao Hong Luyen", Email = "hongluyenh@gmail.com", UserName = "hongluyen@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Giao Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "GV1", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "4", FullName = "La Phuong", Email = "laphuong@gmail.com", UserName = "laphuong@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00631", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "5", FullName = "Van Hien", Email = "vanhien@gmail.com", UserName = "vanhien@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00632", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "6", FullName = "Dinh Nam", Email = "dinhnam@gmail.com", UserName = "dinhnam@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00633", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "7", FullName = "Van Quy", Email = "vanquy@gmail.com", UserName = "vanquy@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00634", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "8", FullName = "Duc Tung", Email = "ductung@gmail.com", UserName = "ductung@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00635", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "9", FullName = "Huy Cuong", Email = "huycuong@gmail.com", UserName = "huycuong@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00636", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "10", FullName = "Van Loi", Email = "vanloi@gmail.com", UserName = "vanloi@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00637", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "11", FullName = "Le Vinh", Email = "levinh@gmail.com", UserName = "levinh@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00638", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "12", FullName = "Duy Phuong", Email = "duyphuong@gmail.com", UserName = "duyphuong@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00639", CreatedAt = DateTime.Now });
-            context.Users.AddOrUpdate(new ApplicationUser() { Id = "13", FullName = "Kim Nghi", Email = "kimnghi@gmail.com", UserName = "kimnghi@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = null, PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00640", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "1", FullName = "Admin", Email = "admin@gmail.com", UserName = "admin@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Admin", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0987654321", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "Admin", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "2", FullName = "Hong Hanh", Email = "honghanh@gmail.com", UserName = "honghanh@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Giao Vu", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0966123123", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "2", RollNumber = "MSG1", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "3", FullName = "Dao Hong Luyen", Email = "hongluyenh@gmail.com", UserName = "hongluyen@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Giao Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0958567567", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "GV1", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "4", FullName = "La Phuong", Email = "laphuong@gmail.com", UserName = "laphuong@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0983454545", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00631", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "5", FullName = "Van Hien", Email = "vanhien@gmail.com", UserName = "vanhien@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0962336611", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00632", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "6", FullName = "Dinh Nam", Email = "dinhnam@gmail.com", UserName = "dinhnam@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0988712312", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00633", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "7", FullName = "Van Quy", Email = "vanquy@gmail.com", UserName = "vanquy@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0881231230", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00634", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "8", FullName = "Duc Tung", Email = "ductung@gmail.com", UserName = "ductung@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0234123987", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00635", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "9", FullName = "Huy Cuong", Email = "huycuong@gmail.com", UserName = "huycuong@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0123567345", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00636", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "10", FullName = "Van Loi", Email = "vanloi@gmail.com", UserName = "vanloi@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0912381234", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00637", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "11", FullName = "Le Vinh", Email = "levinh@gmail.com", UserName = "levinh@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0912309876", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00638", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "12", FullName = "Duy Phuong", Email = "duyphuong@gmail.com", UserName = "duyphuong@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0912312394", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00639", CreatedAt = DateTime.Now });
+            context.Users.AddOrUpdate(new ApplicationUser() { Id = "13", FullName = "Kim Nghi", Email = "kimnghi@gmail.com", UserName = "kimnghi@gmail.com", Address = "Ha Noi", Avatar = "https://www.fkbga.com/wp-content/uploads/2018/07/person-icon-6.png", Description = "Sinh Vien", EmailConfirmed = false, Status = ApplicationUser.UserStatus.ACTIVE, PasswordHash = password, PhoneNumber = "0988199612", PhoneNumberConfirmed = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, TwoFactorEnabled = false, SecurityStamp = "1", RollNumber = "D00640", CreatedAt = DateTime.Now });
 
             UserManager.AddToRole("1", "Admin");
             UserManager.AddToRole("2", "Manager");
@@ -300,8 +300,8 @@ namespace Zeal_Institute.Migrations
             payments.Add(new Payment() { Id = 31, ApplicationUserId = "4", BatchId = 7, AmountPayable = 360, AmountPaid = 360, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-21), Note = null, Status = Payment.PaymentStatus.ACTIVE });
             payments.Add(new Payment() { Id = 32, ApplicationUserId = "5", BatchId = 7, AmountPayable = 360, AmountPaid = 360, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-23), Note = null, Status = Payment.PaymentStatus.ACTIVE });
             payments.Add(new Payment() { Id = 33, ApplicationUserId = "6", BatchId = 7, AmountPayable = 360, AmountPaid = 360, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-26), Note = null, Status = Payment.PaymentStatus.ACTIVE });
-            payments.Add(new Payment() { Id = 34, ApplicationUserId = "7", BatchId = 7, AmountPayable = 400, AmountPaid = 360, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-16), Note = null, Status = Payment.PaymentStatus.ACTIVE });
-            payments.Add(new Payment() { Id = 35, ApplicationUserId = "8", BatchId = 7, AmountPayable = 400, AmountPaid = 360, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-16), Note = null, Status = Payment.PaymentStatus.ACTIVE });
+            payments.Add(new Payment() { Id = 34, ApplicationUserId = "7", BatchId = 7, AmountPayable = 400, AmountPaid = 400, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-16), Note = null, Status = Payment.PaymentStatus.ACTIVE });
+            payments.Add(new Payment() { Id = 35, ApplicationUserId = "8", BatchId = 7, AmountPayable = 400, AmountPaid = 400, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-16), Note = null, Status = Payment.PaymentStatus.ACTIVE });
 
             // batch id = 8
             payments.Add(new Payment() { Id = 36, ApplicationUserId = "9", BatchId = 8, AmountPayable = 340, AmountPaid = 340, Type = Payment.PaymentType.FEE, PayDate = date.AddDays(-16), Note = null, Status = Payment.PaymentStatus.ACTIVE });
@@ -495,6 +495,154 @@ namespace Zeal_Institute.Migrations
             reminders.Add(new Reminder() { Id = 35, ApplicationUserId = "13", BatchId = 18, Note = "1st course fee reminder", Status = Reminder.ReminderStatus.PENDING });
 
             context.Reminders.AddRange(reminders);
+
+            // discount
+            IList<Discount> discounts = new List<Discount>();
+
+            // batch id = 5
+            discounts.Add(new Discount() { Id = 1, ApplicationUserId = "4", BatchId = 5, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 2, ApplicationUserId = "5", BatchId = 5, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 3, ApplicationUserId = "6", BatchId = 5, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 4, ApplicationUserId = "7", BatchId = 5, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 5, ApplicationUserId = "8", BatchId = 5, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 7
+            discounts.Add(new Discount() { Id = 6, ApplicationUserId = "4", BatchId = 7, CoursePrice = 400, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 7, ApplicationUserId = "5", BatchId = 7, CoursePrice = 400, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 8, ApplicationUserId = "6", BatchId = 7, CoursePrice = 400, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 8
+            discounts.Add(new Discount() { Id = 9, ApplicationUserId = "9", BatchId = 8, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 10, ApplicationUserId = "10", BatchId = 8, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 11, ApplicationUserId = "11", BatchId = 8, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 12, ApplicationUserId = "12", BatchId = 8, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 13, ApplicationUserId = "13", BatchId = 8, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 10
+            discounts.Add(new Discount() { Id = 14, ApplicationUserId = "9", BatchId = 10, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 15, ApplicationUserId = "10", BatchId = 10, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 16, ApplicationUserId = "11", BatchId = 10, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 17, ApplicationUserId = "12", BatchId = 10, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 18, ApplicationUserId = "13", BatchId = 10, CoursePrice = 400, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 11
+            discounts.Add(new Discount() { Id = 19, ApplicationUserId = "4", BatchId = 11, CoursePrice = 450, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 20, ApplicationUserId = "5", BatchId = 11, CoursePrice = 450, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 21, ApplicationUserId = "6", BatchId = 11, CoursePrice = 450, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 22, ApplicationUserId = "7", BatchId = 11, CoursePrice = 450, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 23, ApplicationUserId = "8", BatchId = 11, CoursePrice = 450, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 12
+            discounts.Add(new Discount() { Id = 24, ApplicationUserId = "9", BatchId = 12, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 25, ApplicationUserId = "10", BatchId = 12, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 26, ApplicationUserId = "11", BatchId = 12, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 27, ApplicationUserId = "12", BatchId = 12, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 28, ApplicationUserId = "13", BatchId = 12, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 13
+            discounts.Add(new Discount() { Id = 29, ApplicationUserId = "4", BatchId = 13, CoursePrice = 450, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 30, ApplicationUserId = "5", BatchId = 13, CoursePrice = 450, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 31, ApplicationUserId = "6", BatchId = 13, CoursePrice = 450, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 32, ApplicationUserId = "7", BatchId = 13, CoursePrice = 450, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 33, ApplicationUserId = "8", BatchId = 13, CoursePrice = 450, DiscountValue = 15, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 15
+            discounts.Add(new Discount() { Id = 34, ApplicationUserId = "4", BatchId = 15, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 35, ApplicationUserId = "5", BatchId = 15, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 36, ApplicationUserId = "6", BatchId = 15, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 37, ApplicationUserId = "7", BatchId = 15, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 38, ApplicationUserId = "8", BatchId = 15, CoursePrice = 450, DiscountValue = 10, Status = Discount.DiscountStatus.ACTIVE });
+
+            // batch id = 17
+            discounts.Add(new Discount() { Id = 39, ApplicationUserId = "4", BatchId = 17, CoursePrice = 400, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 40, ApplicationUserId = "5", BatchId = 17, CoursePrice = 400, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 41, ApplicationUserId = "6", BatchId = 17, CoursePrice = 400, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 42, ApplicationUserId = "7", BatchId = 17, CoursePrice = 400, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+            discounts.Add(new Discount() { Id = 43, ApplicationUserId = "8", BatchId = 17, CoursePrice = 400, DiscountValue = 20, Status = Discount.DiscountStatus.ACTIVE });
+
+            context.Discounts.AddRange(discounts);
+
+            // list certificate
+            IList<Certificate> certificates = new List<Certificate>();
+
+            // batch id = 1
+            certificates.Add(new Certificate() { Id = 1, ApplicationUserId = "4", BatchId = 1, RegistrationDate = date.AddDays(-10), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 2, ApplicationUserId = "5", BatchId = 1, RegistrationDate = date.AddDays(-10), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 3, ApplicationUserId = "6", BatchId = 1, RegistrationDate = date.AddDays(-10), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 4, ApplicationUserId = "7", BatchId = 1, RegistrationDate = date.AddDays(-10), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 5, ApplicationUserId = "8", BatchId = 1, RegistrationDate = date.AddDays(-10), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 2
+            certificates.Add(new Certificate() { Id = 6, ApplicationUserId = "9", BatchId = 2, RegistrationDate = date.AddDays(-9), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 7, ApplicationUserId = "10", BatchId = 2, RegistrationDate = date.AddDays(-9), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 8, ApplicationUserId = "11", BatchId = 2, RegistrationDate = date.AddDays(-9), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 9, ApplicationUserId = "12", BatchId = 2, RegistrationDate = date.AddDays(-9), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 10, ApplicationUserId = "13", BatchId = 2, RegistrationDate = date.AddDays(-9), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 3
+            certificates.Add(new Certificate() { Id = 11, ApplicationUserId = "4", BatchId = 3, RegistrationDate = date.AddDays(-8), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 12, ApplicationUserId = "5", BatchId = 3, RegistrationDate = date.AddDays(-8), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 13, ApplicationUserId = "6", BatchId = 3, RegistrationDate = date.AddDays(-8), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 14, ApplicationUserId = "7", BatchId = 3, RegistrationDate = date.AddDays(-8), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 15, ApplicationUserId = "8", BatchId = 3, RegistrationDate = date.AddDays(-8), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 4
+            certificates.Add(new Certificate() { Id = 16, ApplicationUserId = "9", BatchId = 4, RegistrationDate = date.AddDays(-7), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 17, ApplicationUserId = "10", BatchId = 4, RegistrationDate = date.AddDays(-7), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 18, ApplicationUserId = "11", BatchId = 4, RegistrationDate = date.AddDays(-7), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 19, ApplicationUserId = "12", BatchId = 4, RegistrationDate = date.AddDays(-7), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 20, ApplicationUserId = "13", BatchId = 4, RegistrationDate = date.AddDays(-7), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 5
+            certificates.Add(new Certificate() { Id = 21, ApplicationUserId = "4", BatchId = 5, RegistrationDate = date.AddDays(-6), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 22, ApplicationUserId = "5", BatchId = 5, RegistrationDate = date.AddDays(-6), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 23, ApplicationUserId = "6", BatchId = 5, RegistrationDate = date.AddDays(-6), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 24, ApplicationUserId = "7", BatchId = 5, RegistrationDate = date.AddDays(-6), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 25, ApplicationUserId = "8", BatchId = 5, RegistrationDate = date.AddDays(-6), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 6
+            certificates.Add(new Certificate() { Id = 26, ApplicationUserId = "9", BatchId = 6, RegistrationDate = date.AddDays(-5), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 27, ApplicationUserId = "10", BatchId = 6, RegistrationDate = date.AddDays(-5), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 28, ApplicationUserId = "11", BatchId = 6, RegistrationDate = date.AddDays(-5), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 29, ApplicationUserId = "12", BatchId = 6, RegistrationDate = date.AddDays(-5), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 30, ApplicationUserId = "13", BatchId = 6, RegistrationDate = date.AddDays(-5), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 7
+            certificates.Add(new Certificate() { Id = 31, ApplicationUserId = "4", BatchId = 7, RegistrationDate = date.AddDays(-4), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 32, ApplicationUserId = "5", BatchId = 7, RegistrationDate = date.AddDays(-4), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 33, ApplicationUserId = "6", BatchId = 7, RegistrationDate = date.AddDays(-4), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 34, ApplicationUserId = "7", BatchId = 7, RegistrationDate = date.AddDays(-4), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 35, ApplicationUserId = "8", BatchId = 7, RegistrationDate = date.AddDays(-4), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 8
+            certificates.Add(new Certificate() { Id = 36, ApplicationUserId = "9", BatchId = 8, RegistrationDate = date.AddDays(-3), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 37, ApplicationUserId = "10", BatchId = 8, RegistrationDate = date.AddDays(-3), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 38, ApplicationUserId = "11", BatchId = 8, RegistrationDate = date.AddDays(-3), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 39, ApplicationUserId = "12", BatchId = 8, RegistrationDate = date.AddDays(-3), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 40, ApplicationUserId = "13", BatchId = 8, RegistrationDate = date.AddDays(-3), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 9
+            certificates.Add(new Certificate() { Id = 41, ApplicationUserId = "4", BatchId = 9, RegistrationDate = date.AddDays(-2), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 42, ApplicationUserId = "5", BatchId = 9, RegistrationDate = date.AddDays(-2), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 43, ApplicationUserId = "6", BatchId = 9, RegistrationDate = date.AddDays(-2), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 44, ApplicationUserId = "7", BatchId = 9, RegistrationDate = date.AddDays(-2), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 45, ApplicationUserId = "8", BatchId = 9, RegistrationDate = date.AddDays(-2), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 10
+            certificates.Add(new Certificate() { Id = 46, ApplicationUserId = "9", BatchId = 10, RegistrationDate = date.AddDays(-1), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 47, ApplicationUserId = "10", BatchId = 10, RegistrationDate = date.AddDays(-1), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 48, ApplicationUserId = "11", BatchId = 10, RegistrationDate = date.AddDays(-1), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 49, ApplicationUserId = "12", BatchId = 10, RegistrationDate = date.AddDays(-1), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 50, ApplicationUserId = "13", BatchId = 10, RegistrationDate = date.AddDays(-1), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            // batch id = 11
+            certificates.Add(new Certificate() { Id = 51, ApplicationUserId = "4", BatchId = 11, RegistrationDate = date.AddDays(0), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 52, ApplicationUserId = "5", BatchId = 11, RegistrationDate = date.AddDays(0), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 53, ApplicationUserId = "6", BatchId = 11, RegistrationDate = date.AddDays(0), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 54, ApplicationUserId = "7", BatchId = 11, RegistrationDate = date.AddDays(0), Note = null, Status = Certificate.CertificateStatus.PENDING });
+            certificates.Add(new Certificate() { Id = 55, ApplicationUserId = "8", BatchId = 11, RegistrationDate = date.AddDays(0), Note = null, Status = Certificate.CertificateStatus.PENDING });
+
+            context.Certificates.AddRange(certificates);
 
             base.Seed(context);
         }
