@@ -3,68 +3,62 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var count = 0;
 }
 
-<h2>Index</h2>
+<h4 class="py-3">List feedbacks</h4>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FbEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FbPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FbName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
+<div class="card shadow-sm table-wrapper table-responsive">
+    <table class="display table table-flush" id="table_id">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">#</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Content</th>
+                <th>Note</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td class="text-center">@count</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FbEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FbPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FbName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FbEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FbPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FbName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
 }
-
-</table>

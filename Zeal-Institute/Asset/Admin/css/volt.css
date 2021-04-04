@@ -31412,6 +31412,7 @@ table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column
     background-color: #fff !important;
 }
 .table > :not(caption) > * > * {
+    vertical-align: middle;
     padding: .75rem .5rem !important;
     background-color: var(--bs-table-bg) !important;
     background-image: linear-gradient(var(--bs-table-accent-bg),var(--bs-table-accent-bg)) !important;
@@ -31419,4 +31420,10 @@ table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column
 }
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
     background-color: #fff !important;
+}
+.image-list-object {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }

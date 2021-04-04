@@ -52,7 +52,7 @@
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.DateEnd)
                     </td>
-                    <td class="text-right">
+                    <td class="text-center">
                         <a href="@Url.Action("Edit", "Batches", new { id = item.Id })" class="me-4 text-warning" title="Edit"><i class="fa fa-pencil-alt"></i></a>
                         <a href="@Url.Action("Delete", "Batches", new { id = item.Id })" class="text-danger" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>

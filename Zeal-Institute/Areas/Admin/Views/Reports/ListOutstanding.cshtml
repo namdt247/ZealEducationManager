@@ -25,7 +25,7 @@
             {
                 count++;
                 <tr>
-                    <td>@count</td>
+                    <td class="text-center">@count</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
                     </td>
@@ -33,13 +33,13 @@
                         @Html.DisplayFor(modelItem => item.Batch.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AmountPayable)
+                        $@Html.DisplayFor(modelItem => item.AmountPayable)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AmountPaid)
+                       $@Html.DisplayFor(modelItem => item.AmountPaid)
                     </td>
                     <td>
-                        @item.RemainingAmount(item.AmountPayable, item.AmountPaid)
+                        $@item.RemainingAmount(item.AmountPayable, item.AmountPaid)
                     </td>
                 </tr>
             }

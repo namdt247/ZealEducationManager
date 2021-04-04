@@ -3,30 +3,27 @@
 @{
     ViewBag.Title = "ListReminder";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var count = 0;
 }
 
-<h2>List Reminder</h2>
+<h4 class="py-3">List Reminder</h4>
 
-<div class="card card-body shadow-sm table-wrapper table-responsive">
-    <table class="display" id="table_id">
-        <thead>
+<div class="card shadow-sm table-wrapper table-responsive">
+    <table class="display table table-flush" id="table_id">
+        <thead class="thead-light">
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser.FullName)
-                </th>
-                <th>
-                    Batch
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Note)
-                </th>
-                <th></th>
+                <th class="text-center">#</th>
+                <th>Name</th>
+                <th>Batch</th>
+                <th>Note</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
+                count++;
                 <tr>
+                    <td class="text-center">@count</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
                     </td>
@@ -36,15 +33,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Note)
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
                 </tr>
             }
         </tbody>
-
     </table>
 </div>
 

@@ -3,33 +3,28 @@
 @{
     ViewBag.Title = "ListDiscount";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var count = 0;
 }
 
-<h2>List Discount</h2>
+<h4 class="py-3">List Discount</h4>
 
-<div class="card card-body shadow-sm table-wrapper table-responsive">
-    <table class="display" id="table_id">
-        <thead>
+<div class="card shadow-sm table-wrapper table-responsive">
+    <table class="display table table-flush" id="table_id">
+        <thead class="thead-light">
             <tr>
-                <th>
-                    Student
-                </th>
-                <th>
-                    Batch
-                </th>
-                <th>
-                    Course Price
-                </th>
-                <th>
-                    Discount Value
-                </th>
-                <th></th>
+                <th class="text-center">#</th>
+                <th>Student</th>
+                <th>Batch</th>
+                <th>Course Price</th>
+                <th>Discount Value</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
+                count++;
                 <tr>
+                    <td class="text-center">@count</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
                     </td>
@@ -37,15 +32,10 @@
                         @Html.DisplayFor(modelItem => item.Batch.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CoursePrice)
+                        $@Html.DisplayFor(modelItem => item.CoursePrice)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DiscountValue)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        @Html.DisplayFor(modelItem => item.DiscountValue)%
                     </td>
                 </tr>
             }
