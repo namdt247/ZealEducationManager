@@ -1,10 +1,24 @@
-﻿@model IEnumerable<Zeal_Institute.Models.Course>  
+﻿@model IEnumerable<Zeal_Institute.Models.Course>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<style>
+    .swiper-wrapper {
+        width: 100%;
+        height: 250px;
+    }
+    /* 全スライド共通スタイル */
+    .swiper-slide {
+        color: #ffffff;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 250px;
+        border-radius: 10px;
+    }
+</style>
 <!-- home-section
 
         ================================================== -->
@@ -715,56 +729,59 @@
                 <a class="button-one" href="#">View All Courses</a>
             </div>
         </div>
-        <div class="popular-courses-box">
-            <div class="row">
-                @for (var i = 0; i < 4; i++)
-                {
-                    <div class="col-lg-3 col-md-6" > 
-                        <div class="course-post" style="height:380px">
-                            <div class="course-thumbnail-holder">
-                                <a href="single-course.html">
-                                    <img style="width:278px;height:137px" src="@Model.ElementAt(i).Thumbnail" class="mw-100" alt="">
-                                </a>
+        
+    </div>
+</section>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            <div class="swiper-slide">
+                <div class="course-post" style="height:380px;width:100%">
+                    <div class="course-thumbnail-holder">
+                       
+                            <img style="width:278px;height:137px" src="@Model.ElementAt(i).Thumbnail" alt="">
+                        
+                    </div>
+                    <div class="course-content-holder">
+                        <div class="course-content-main">
+                            <h2 class="course-title">
+                                <a href="#">@Model.ElementAt(i).Description</a>
+                            </h2>
+                            <div class="course-rating-teacher">
+                                <div class="star-rating has-ratings" title="Rated 5.00 out of 5">
+                                    <span style="width:100%">
+                                        <span class="rating">5.00</span>
+                                        <span class="votes-number">1 Votes</span>
+                                    </span>
+                                </div>
+                                <a href="#" class="course-loop-teacher">Duha Samra</a>
                             </div>
-                            <div class="course-content-holder">
-                                <div class="course-content-main">
-                                    <h2 class="course-title">
-                                        <a href="single-course.html">@Model.ElementAt(i).Description</a>
-                                    </h2>
-                                    <div class="course-rating-teacher">
-                                        <div class="star-rating has-ratings" title="Rated 5.00 out of 5">
-                                            <span style="width:100%">
-                                                <span class="rating">5.00</span>
-                                                <span class="votes-number">1 Votes</span>
-                                            </span>
-                                        </div>
-                                        <a href="#" class="course-loop-teacher">Duha Samra</a>
-                                    </div>
-                                </div>
-                                <div class="course-content-bottom">
-                                    <div class="course-students">
-                                        <i class="material-icons">group</i>
-                                        <span>64</span>
-                                    </div>
-                                    <div class="course-price">
-                                        <span>@Model.ElementAt(i).Price $</span>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="course-content-bottom">
+                            <div class="course-students">
+                                <i class="material-icons">group</i>
+                                <span>64</span>
+                            </div>
+                            <div class="course-price">
+                                <span>@Model.ElementAt(i).Price $</span>
                             </div>
                         </div>
                     </div>
-                }
-
-
-
-
-
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- End popular-courses section -->
+        }
 
+
+
+
+
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+</div>
+<!-- End popular-courses section -->
 <!-- news-section
 ================================================== -->
 <section class="news-section">
