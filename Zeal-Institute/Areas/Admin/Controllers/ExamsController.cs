@@ -33,6 +33,8 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            var ListExamStudent = db.ExamDetails.Where(x => x.ExamId == exam.Id).ToList();
+            ViewData["ListExamStudent"] = ListExamStudent;
             return View(exam);
         }
 

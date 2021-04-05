@@ -644,6 +644,24 @@ namespace Zeal_Institute.Migrations
 
             context.Certificates.AddRange(certificates);
 
+            // list feedback
+            IList<Feedback> feedbacks = new List<Feedback>();
+
+            feedbacks.Add(new Feedback() { Id = 1, FbEmail = "phuonganh01@gmail.com", FbPhone = "0984288003", FbName = "Phuong Anh", Type = Feedback.FeedbackType.REGISTER , Content = "Sign up for a web programming course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 2, FbEmail = "lathanh@gmail.com", FbPhone = "0923123412", FbName = "La Thanh", Type = Feedback.FeedbackType.REGISTER , Content = "Sign up for a mobile programming course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 3, FbEmail = "chithien@gmail.com", FbPhone = "0987123654", FbName = "Chi Thien", Type = Feedback.FeedbackType.DETAIL , Content = "Consulting .NET course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 4, FbEmail = "dantruong@gmail.com", FbPhone = "0984213123", FbName = "Dan Truong", Type = Feedback.FeedbackType.DETAIL , Content = "Consulting .NET course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 5, FbEmail = "tuelam@gmail.com", FbPhone = "0213436123", FbName = "Tue Lam", Type = Feedback.FeedbackType.REGISTER , Content = "Sign up for a web programming course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 6, FbEmail = "hoavinh0110@gmail.com", FbPhone = "0984288123", FbName = "Hoa Vinh", Type = Feedback.FeedbackType.REGISTER , Content = "Sign up for a web programming course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 7, FbEmail = "damvinhhung@gmail.com", FbPhone = "0881234123", FbName = "Dam Vinh Hung", Type = Feedback.FeedbackType.REGISTER , Content = "Sign up for a web programming course", Note = null, Status = Feedback.FeedbackStatus.PENDING });
+            feedbacks.Add(new Feedback() { Id = 8, FbEmail = "tolam@gmail.com", FbPhone = "0962337711", FbName = "To Lam", Type = Feedback.FeedbackType.DETAIL , Content = "Consulting Java Spring Boot course", Note = null, Status = Feedback.FeedbackStatus.DONE });
+            feedbacks.Add(new Feedback() { Id = 9, FbEmail = "lamchithien@gmail.com", FbPhone = "0123987678", FbName = "Lam Chi Thien", Type = Feedback.FeedbackType.DETAIL , Content = "Consulting PHP Laravel course", Note = null, Status = Feedback.FeedbackStatus.DONE });
+            feedbacks.Add(new Feedback() { Id = 10, FbEmail = "kienphu@gmail.com", FbPhone = "0881231239", FbName = "Kien Phu", Type = Feedback.FeedbackType.REGISTER , Content = "Sign up for a mobile programming course", Note = null, Status = Feedback.FeedbackStatus.DONE });
+            feedbacks.Add(new Feedback() { Id = 11, FbEmail = "hoavy@gmail.com", FbPhone = "0976123512", FbName = "Hoa Vy", Type = Feedback.FeedbackType.DETAIL , Content = "Consulting NodeJS course", Note = null, Status = Feedback.FeedbackStatus.DONE });
+            feedbacks.Add(new Feedback() { Id = 12, FbEmail = "truongthanh@gmail.com", FbPhone = "0123612345", FbName = "Truong Thanh", Type = Feedback.FeedbackType.DETAIL , Content = "Consulting PHP Laravel course", Note = null, Status = Feedback.FeedbackStatus.DONE });
+
+            context.Feedbacks.AddRange(feedbacks);
+
             base.Seed(context);
         }
     }

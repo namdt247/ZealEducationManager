@@ -38,10 +38,10 @@ namespace Zeal_Institute.Models
 
         public enum FeedbackStatus
         {
-            [Display(Name = "Active")]
-            ACTIVE,
-            [Display(Name = "Deactive")]
-            DEACTIVE,
+            [Display(Name = "Pending")]
+            PENDING,
+            [Display(Name = "Done")]
+            DONE,
             [Display(Name = "Deleted")]
             DELETED
         }

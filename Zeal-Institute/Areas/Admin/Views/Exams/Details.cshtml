@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int count = 0;
 }
 
 <h2>Details</h2>
@@ -10,40 +11,76 @@
 <div>
     <h4>Exam</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Batch.Name)
-        </dt>
+    <div class="dl-horizontal">
+        <div class="row mb-4">
+            <div class="col-4">
+                <div>
+                    @Html.DisplayNameFor(model => model.Batch.Name)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Batch.Name)
-        </dd>
+                <div>
+                    @Html.DisplayFor(model => model.Batch.Name)
+                </div>
+            </div>
+            <div class="col-4">
+                <div>
+                    @Html.DisplayNameFor(model => model.DateExam)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateExam)
-        </dt>
+                <div>
+                    @Html.DisplayFor(model => model.DateExam)
+                </div>
+            </div>
+            <div class="col-4">
+                <div>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateExam)
-        </dd>
+                <div>
+                    @Model.StartTime
+                    @*@Html.DisplayFor(model => model.StartTime)*@
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-    </dl>
+    @* exam detail *@
+    <div class="card shadow-sm table-wrapper table-responsive">
+        <table class="display table table-flush" id="table_id">
+            <thead class="thead-light">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Avatar</th>
+                    <th>Student</th>
+                    <th>Roll Number</th>
+                    <th>Mark</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<Zeal_Institute.Models.ExamDetail>)ViewData["ListExamStudent"])
+                {
+                    count++;
+                <tr>
+                    <td class="text-center">
+                        @count
+                    </td>
+                    <td>
+                        <img class="image-list-object" src="@item.ApplicationUser.Avatar" alt="avatar" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.RollNumber)
+                    </td>
+                    <td class="text-danger">
+                        @Html.DisplayFor(modelItem => item.Mark)%
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

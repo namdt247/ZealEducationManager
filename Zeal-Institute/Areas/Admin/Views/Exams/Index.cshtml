@@ -5,48 +5,65 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h4 class="py-3">Examination</h4>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Batch.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateExam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    <div>
+        <a class="btn btn-success btn-sm text-light me-2" href="@Url.Action("Create", "Courses")">
+            <span class="fas fa-plus me-2"></span> Create
+        </a>
+    </div>
+</div>
+<div class="card shadow-sm table-wrapper table-responsive">
+    <table class="display table table-flush" id="table_id">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Batch.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateExam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Batch.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateExam)
+                </td>
+                <td>
+                    @item.StartTime
+                </td>
+                <td class="text-danger">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Batch.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateExam)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.StartTime)*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+                <td class="text-center">
+                    <a href="@Url.Action("Details", "Exams", new { id = item.Id })" class="me-4 text-warning"><i class="fa fa-pencil-alt"></i></a>
+                    <a href="@Url.Action("Delete", "Exams", new { id = item.Id })" class="text-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
 }
-
-</table>
