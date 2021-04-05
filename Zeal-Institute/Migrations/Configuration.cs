@@ -122,13 +122,13 @@ namespace Zeal_Institute.Migrations
             // list course
             IList<Course> courses = new List<Course>();
 
-            courses.Add(new Course() { Id = 1, Name = "ASP .Net Mvc", Code = "ASPNETMCV", Price = 400, Description = "hello", Status = Course.CourseStatus.ACTIVE });
-            courses.Add(new Course() { Id = 2, Name = "Swift IOS", Code = "SWIFT", Price = 450, Description = "hello", Status = Course.CourseStatus.ACTIVE });
-            courses.Add(new Course() { Id = 3, Name = "Node Js", Code = "NODEJS", Price = 400, Description = "hello", Status = Course.CourseStatus.ACTIVE });
-            courses.Add(new Course() { Id = 4, Name = "Java Spring Boot", Code = "JAVAWEB", Price = 450, Description = "hello", Status = Course.CourseStatus.ACTIVE });
-            courses.Add(new Course() { Id = 5, Name = "Kotlin Android", Code = "KOTLIN", Price = 450, Description = "hello", Status = Course.CourseStatus.ACTIVE });
-            courses.Add(new Course() { Id = 6, Name = "HTML&CSS JS", Code = "HTMLCSS", Price = 250, Description = "hello", Status = Course.CourseStatus.ACTIVE });
-            courses.Add(new Course() { Id = 7, Name = "PHP Laravel", Code = "PHPL", Price = 350, Description = "hello", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 1, Name = "ASP .Net Mvc", Thumbnail = "https://res.cloudinary.com/phuonglvd00631fptaptech/image/upload/v1617569229/samples/ZealProject/asp-net-mvc_bczbht.png", Code = "ASPNETMCV", Price = 400, Description = "Design Website with Asp .Net Mvc 5", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 2, Name = "Swift IOS",Thumbnail = "https://res.cloudinary.com/phuonglvd00631fptaptech/image/upload/v1617569372/samples/ZealProject/swift_nvy0tm.png", Code = "SWIFT", Price = 450, Description = "Became iOS App Developer with Just One Course", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 3, Name = "Node Js", Thumbnail = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD0W3nhKa6JLPyIThAkBTv13I6DE98Oo5NRw&usqp=CAU", Code = "NODEJS", Price = 400, Description = "Learn Node.js, runtime environment, from the pros", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 4, Name = "Java Spring Boot", Thumbnail = "https://i.ytimg.com/vi/vtPkZShrvXQ/maxresdefault.jpg", Code = "JAVAWEB", Price = 450, Description = "Creating Your First Spring Boot Application", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 5, Name = "Kotlin Android", Thumbnail = "https://i.ytimg.com/vi/Iz08OTTjR04/maxresdefault.jpg", Code = "KOTLIN", Price = 450, Description = "Building Android apps with the Kotlin programming language", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 6, Name = "HTML&CSS JS", Thumbnail = "https://viblo.asia/uploads/3fc1e5e8-1263-4d3a-bab9-cfe7050ef9fd.jpeg", Code = "HTMLCSS", Price = 250, Description = "Introduction Web Design with HTML, CSS, JS", Status = Course.CourseStatus.ACTIVE });
+            courses.Add(new Course() { Id = 7, Name = "PHP Laravel", Thumbnail = "https://i.ytimg.com/vi/EcYXsp78Xy8/mqdefault.jpg", Code = "PHPL", Price = 350, Description = "PHP with Laravel for beginners - Become a Master in Laravel", Status = Course.CourseStatus.ACTIVE });
             context.Courses.AddRange(courses);
 
             // list batch

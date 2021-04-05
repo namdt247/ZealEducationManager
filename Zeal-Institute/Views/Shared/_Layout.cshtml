@@ -1,44 +1,161 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+
+
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Studiare</title>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,500i,600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Asset/Client/css/studiare-assets.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Asset/Client/css/fonts/font-awesome/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="~/Asset/Client/css/fonts/elegant-icons/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="~/Asset/Client/css/fonts/iconfont/material-icons.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="~/Asset/Client/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- Container -->
+    <div id="container">
+        <!-- Header
+        ================================================== -->
+        @Html.Partial("Header")
+        <!-- End Header -->
+        @RenderBody()
+        @Html.Partial("_Footer")
+        <!-- footer
+        ================================================== -->
+        <!-- End footer -->
+
+    </div>
+    <!-- End Container -->
+    @Html.Partial("_ModalLogin")
+
+    <script src="~/Asset/Client/js/studiare-plugins.min.js"></script>
+    <script src="~/Asset/Client/js/jquery.countTo.js"></script>
+    <script src="~/Asset/Client/js/popper.js"></script>
+    <script src="~/Asset/Client/js/bootstrap.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyCiqrIen8rWQrvJsu-7f4rOta0fmI5r2SI&amp;sensor=false&amp;language=en"></script>
+    <script src="~/Asset/Client/js/gmap3.min.js"></script>
+    <script src="~/Asset/Client/js/script.js"></script>
+
+    <script type="text/javascript" src="~/Asset/Client/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/Asset/Client/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/Asset/Client/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/Asset/Client/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/Asset/Client/js/extensions/revolution.extension.parallax.min.js"></script>
+
+    <script>
+        var tpj = jQuery;
+        var revapi202;
+        tpj(document).ready(function () {
+            if (tpj("#rev_slider_202_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_202_1");
+            } else {
+                revapi202 = tpj("#rev_slider_202_1").show().revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "js/",
+                    dottedOverlay: "none",
+                    delay: 5000,
+                    navigation: {
+                        keyboardNavigation: "off",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        onHoverStop: "off",
+                        arrows: {
+                            enable: true,
+                            style: 'gyges',
+                            left: {
+                                container: 'slider',
+                                h_align: 'left',
+                                v_align: 'center',
+                                h_offset: 20,
+                                v_offset: -60
+                            },
+
+                            right: {
+                                container: 'slider',
+                                h_align: 'right',
+                                v_align: 'center',
+                                h_offset: 20,
+                                v_offset: -60
+                            }
+                        },
+                        touch: {
+                            touchenabled: "on",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 50,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
+                        },
+                        bullets: {
+
+                            enable: false,
+                            style: 'persephone',
+                            tmp: '',
+                            direction: 'horizontal',
+                            rtl: false,
+
+                            container: 'slider',
+                            h_align: 'center',
+                            v_align: 'bottom',
+                            h_offset: 0,
+                            v_offset: 55,
+                            space: 7,
+
+                            hide_onleave: false,
+                            hide_onmobile: false,
+                            hide_under: 0,
+                            hide_over: 9999,
+                            hide_delay: 200,
+                            hide_delay_mobile: 1200
+                        }
+                    },
+                    responsiveLevels: [1210, 1024, 778, 480],
+                    visibilityLevels: [1210, 1024, 778, 480],
+                    gridwidth: [1210, 1024, 778, 480],
+                    gridheight: [700, 700, 600, 600],
+                    lazyType: "none",
+                    parallax: {
+                        type: "scroll",
+                        origo: "slidercenter",
+                        speed: 1000,
+                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 100, 55],
+                        type: "scroll",
+                    },
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    fullScreenAutoWidth: "off",
+                    fullScreenAlignForce: "off",
+                    fullScreenOffsetContainer: "",
+                    fullScreenOffset: "0px",
+                    disableProgressBar: "on",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            }
+        }); /*ready*/
+    </script>
+
+
 </body>
 </html>
