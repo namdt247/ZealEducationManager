@@ -7,30 +7,14 @@ using Zeal_Institute.Models;
 
 namespace Zeal_Institute.Controllers
 {
-
-    public class HomeController : Controller
+    public class CourseController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        // GET: Course
         public ActionResult Index()
         {
             var Courses = db.Courses.ToList();
             return View(Courses);
-        }
-
-        public ActionResult About()
-        {
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
-        public ActionResult Event()
-        {
-            return View();
         }
     }
 }
