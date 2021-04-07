@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +19,8 @@ namespace Zeal_Institute.Areas.Admin.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
+        private RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
         public HomeController()
         {
@@ -63,7 +67,38 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            var role = roleManager.FindByName("Student").Users.First();
+            var startDate = DateTime.Now;
+            var endDate = DateTime.Now.AddDays(-30);
+
+            var dataStudent = db.Users
+                .Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId))
+                .Where(u => u.CreatedAt >= endDate)
+                .Where(u => u.CreatedAt <= startDate)   
+                .GroupBy(x => x.CreatedAt)
+                .ToDictionary(k => k.Key.ToString("dd-MM-yyyy"), k=>k.Count())
+                ;
+
+            ViewBag.StudentData = JsonConvert.SerializeObject(dataStudent);
             return View();
+        }
+
+        public JsonResult StudentData()
+        {
+            var role = roleManager.FindByName("Student").Users.First();
+            var startDate = DateTime.Now;
+            var endDate = DateTime.Now.AddDays(-30);
+
+            var dataStudent = db.Users
+                .Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId))
+                .Where(u => u.CreatedAt >= endDate)
+                .Where(u => u.CreatedAt <= startDate)
+                .GroupBy(x => x.CreatedAt)
+                .ToDictionary(k => k.Key.ToString("dd-MM-yyyy"), k => k.Count())
+                ;
+
+            ViewBag.StudentData = JsonConvert.SerializeObject(dataStudent);
+            return ViewBag.StudentData;
         }
 
         public ActionResult Login(string returnUrl)

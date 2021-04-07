@@ -4,20 +4,89 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
-<h2>Admin Home Page</h2>
+<h2>Dashboard</h2>
 
+<h5>Student statistics</h5>
+
+<div class="col-4">
+    <div class="form-control text-center" id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+        <i class="fa fa-calendar"></i>&nbsp;
+        <span></span> <i class="fa fa-caret-down"></i>
+    </div>
+</div>
+
+<div class="py-4">
+    <canvas id="myChart"></canvas>
+</div>
+
+@section Scripts {
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var dataPoint = @Html.Raw(ViewBag.StudentData);
+        var labelChart = Object.keys(dataPoint);
+        var dataChart = Object.values(dataPoint);
+
+        console.log(dataPoint);
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labelChart,
+                datasets: [
+                    {
+                        label: 'Total Student',
+                        fill: false,
+                        data: dataChart,
+                        borderColor: '#fd9e38',
+                        borderWidth: 1,
+                        lineTension: .4,
+                        borderDash: [],
+                        pointBorderColor: '#fd9e38',
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderWidth: 1.5,
+                        pointHoverRadius: 4,
+                        pointHoverBackgroundColor: '#fd9e38',
+                        pointHoverBorderColor: '#fd9e38',
+                        pointHoverBorderWidth: 1,
+                        pointRadius: 4,
+                        pointHitRadius: 1,
+                        hidden: false,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+            }
+
+            $('#reportrange').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                }
+            }, cb);
+
+            cb(start, end);
+
+        });
+    </script>
+
+}
