@@ -46,12 +46,12 @@
                 <td class="text-danger">
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td class="text-center">
+                <td class="text-right">
                     @if (!(item.Status == Zeal_Institute.Models.Feedback.FeedbackStatus.DONE))
                     {
                         <a href="@Url.Action("Edit", "Feedbacks", new { id = item.Id })" class="me-4 text-warning"><i class="fa fa-pencil-alt"></i></a>
                     }
-                    <a href="@Url.Action("Delete", "Feedbacks", new { id = item.Id })" class="text-danger"><i class="fa fa-trash"></i></a>
+                    <a href="@Url.Action("Delete", "Feedbacks", new { id = item.Id })" class="text-danger pe-4"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
             }
