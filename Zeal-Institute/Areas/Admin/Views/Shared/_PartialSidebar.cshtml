@@ -179,15 +179,17 @@
                 </span>
                 <div class="multi-level collapse @(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" 
                     && (ViewContext.RouteData.Values["Action"].ToString() == "EndBatches" 
-                    || ViewContext.RouteData.Values["Action"].ToString() == "StartBatches" ) ? "show" : "")" role="list"
+                    || ViewContext.RouteData.Values["Action"].ToString() == "StartBatches"
+                    || ViewContext.RouteData.Values["Action"].ToString() == "DetailsEnding"
+                    || ViewContext.RouteData.Values["Action"].ToString() == "DetailsStart") ? "show" : "")" role="list"
                      id="submenu-batch-report" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" && ViewContext.RouteData.Values["Action"].ToString() == "EndBatches" ? "active" : "")">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" && (ViewContext.RouteData.Values["Action"].ToString() == "EndBatches" || ViewContext.RouteData.Values["Action"].ToString() == "DetailsEnding") ? "active" : "")">
                             <a class="nav-link" href="@Url.Action("EndBatches", "Reports")">
                                 <span class="sidebar-text">Ending Batches</span>
                             </a>
                         </li>
-                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" && ViewContext.RouteData.Values["Action"].ToString() == "StartBatches" ? "active" : "")">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" && (ViewContext.RouteData.Values["Action"].ToString() == "StartBatches" || ViewContext.RouteData.Values["Action"].ToString() == "DetailsStart") ? "active" : "")">
                             <a class="nav-link" href="@Url.Action("StartBatches", "Reports")">
                                 <span class="sidebar-text">Starting Batches</span>
                             </a>

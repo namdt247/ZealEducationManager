@@ -13,11 +13,12 @@
         <thead class="thead-light">
             <tr>
                 <th class="text-center">#</th>
-                <th>Course</th>
                 <th>Batch</th>
                 <th>Batch Code</th>
+                <th>Course</th>
                 <th>Date Start</th>
                 <th>Date End</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,19 +28,22 @@
                 <tr>
                     <td class="text-center">@count</td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Course.Name)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Code)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Course.Name)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.DateStart)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateEnd)
+                    </td>
+                    <td class="text-right">
+                        <a href="@Url.Action("DetailsEnding", "Reports", new { id = item.Id })" class="me-4 text-warning pe-4"><i class="fa fa-pencil-alt"></i></a>
                     </td>
                 </tr>
             }

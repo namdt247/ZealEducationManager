@@ -2042,6 +2042,8 @@
     <Content Include="Areas\Admin\Views\Reports\ListDiscount.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\ListStudent.cshtml" />
     <Content Include="Areas\Admin\Views\Reports\StartBatches.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\DetailsStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Reports\DetailsEnding.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
