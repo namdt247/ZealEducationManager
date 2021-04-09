@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Zeal_Institute.Models;
@@ -12,6 +13,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
     public class ReportsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
         // GET: Admin/Reports
         // Reports financial
         public ActionResult ListFee()
@@ -70,6 +72,34 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         {
             var ListCertificate = db.Certificates.OrderByDescending(x => x.RegistrationDate).ToList();
             return View(ListCertificate);
+        }
+        // detail ending batch
+        public ActionResult DetailsEnding(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Batch batch = db.Batches.Find(id);
+            if (batch == null)
+            {
+                return HttpNotFound();
+            }
+            return View(batch);
+        }
+        // detail ending batch
+        public ActionResult DetailsStart(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Batch batch = db.Batches.Find(id);
+            if (batch == null)
+            {
+                return HttpNotFound();
+            }
+            return View(batch);
         }
     }
 }
