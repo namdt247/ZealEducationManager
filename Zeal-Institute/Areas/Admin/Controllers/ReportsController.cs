@@ -68,7 +68,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
 
         public ActionResult ListCertificate()
         {
-            var ListCertificate = db.Certificates.Where(x => x.Status == Certificate.CertificateStatus.PENDING).ToList();
+            var ListCertificate = db.Certificates.OrderByDescending(x => x.RegistrationDate).ToList();
             return View(ListCertificate);
         }
     }

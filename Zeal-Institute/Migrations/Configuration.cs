@@ -370,8 +370,8 @@ namespace Zeal_Institute.Migrations
             examDetails.Add(new ExamDetail() { ExamId = 2, ApplicationUserId = "13", Mark = 60, Note = null });
 
             // exam id = 3
-            examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "4", Mark = 20, Note = null });
-            examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "5", Mark = 35, Note = null });
+            examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "4", Mark = 80, Note = null });
+            examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "5", Mark = 75, Note = null });
             examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "6", Mark = 70, Note = null });
             examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "7", Mark = 85, Note = null });
             examDetails.Add(new ExamDetail() { ExamId = 3, ApplicationUserId = "8", Mark = 80, Note = null });
