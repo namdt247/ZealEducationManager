@@ -94,14 +94,11 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                certificate.ApplicationUserId = certificate.ApplicationUser.Id;
-                certificate.BatchId = certificate.Batch.Id;
                 certificate.Status = Certificate.CertificateStatus.DONE;
                 certificate.ReceivedDate = DateTime.Now;
-
                 db.Entry(certificate).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ListCertificate");
             }
             return View(certificate);
         }

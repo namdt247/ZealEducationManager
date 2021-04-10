@@ -6,14 +6,15 @@
     int count = 0;
 }
 
-<h2>Details</h2>
+<p class="text-left">
+    <a href="@Url.Action("Index", "Exams")" class="text-gray-700"><i class="fas fa-angle-left me-2"></i> Back to List</a>
+</p>
+<h4>Exam details <a href="@Url.Action("Edit", "Exams", new { id = Model.Id })" type="button" class="btn btn-sm btn-warning float-end me-3"><i class="fa fa-pen"></i> Edit</a></h4>
 
-<div>
-    <h4>Exam</h4>
-    <hr />
+<div class="card shadow-sm table-wrapper table-responsive mb-3">
     <div class="dl-horizontal">
-        <div class="row mb-4">
-            <div class="col-4">
+        <div class="row m-0 py-3 px-4">
+            <div class="col-sm-4 col-md-4">
                 <div>
                     @Html.DisplayNameFor(model => model.Batch.Name)
                 </div>
@@ -22,7 +23,7 @@
                     @Html.DisplayFor(model => model.Batch.Name)
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-sm-4 col-md-4">
                 <div>
                     @Html.DisplayNameFor(model => model.DateExam)
                 </div>
@@ -31,58 +32,59 @@
                     @Html.DisplayFor(model => model.DateExam)
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-sm-4 col-md-4">
                 <div>
                     @Html.DisplayNameFor(model => model.StartTime)
                 </div>
 
                 <div>
                     @Model.StartTime
-                    @*@Html.DisplayFor(model => model.StartTime)*@
                 </div>
             </div>
         </div>
     </div>
-
-    @* exam detail *@
-    <div class="card shadow-sm table-wrapper table-responsive">
-        <table class="display table table-flush" id="table_id">
-            <thead class="thead-light">
-                <tr>
-                    <th class="text-center">#</th>
-                    <th>Avatar</th>
-                    <th>Student</th>
-                    <th>Roll Number</th>
-                    <th>Mark</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in (List<Zeal_Institute.Models.ExamDetail>)ViewData["ListExamStudent"])
+    <table class="display table table-flush" id="table_id">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">#</th>
+                <th>Avatar</th>
+                <th>Student</th>
+                <th>Roll Number</th>
+                <th>Mark</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (List<Zeal_Institute.Models.ExamDetail>)ViewData["ListExamStudent"])
+            {
+                count++;
+            <tr>
+                <td class="text-center">
+                    @count
+                </td>
+                <td>
+                    <img class="image-list-object" src="@item.ApplicationUser.Avatar" alt="avatar" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.RollNumber)
+                </td>
+                @if (item.Mark >= 40)
                 {
-                    count++;
-                <tr>
-                    <td class="text-center">
-                        @count
+                    <td class="text-success">
+                        @Html.DisplayFor(modelItem => item.Mark)%
                     </td>
-                    <td>
-                        <img class="image-list-object" src="@item.ApplicationUser.Avatar" alt="avatar" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApplicationUser.RollNumber)
-                    </td>
+                }
+                else
+                {
                     <td class="text-danger">
                         @Html.DisplayFor(modelItem => item.Mark)%
                     </td>
-                </tr>
                 }
-            </tbody>
-        </table>
-    </div>
+
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -21,15 +21,15 @@
                     @Html.HiddenFor(model => model.Id)
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.ApplicationUser.FullName, "Student", htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.ApplicationUser.FullName, new { htmlAttributes = new { @class = "form-control", disabled = ""} })
-                        @Html.ValidationMessageFor(model => model.ApplicationUserId, "", new { @class = "invalid-feedback" })
+                        <label>Student</label>
+                        @Html.HiddenFor(model => model.ApplicationUserId)
+                        @Html.EditorFor(model => model.ApplicationUser.FullName, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Batch.Name, "Batch", htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.Batch.Name, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
-                        @Html.ValidationMessageFor(model => model.Batch.Name, "", new { @class = "invalid-feedback" })
+                        <label>Batch</label>
+                        @Html.HiddenFor(model => model.BatchId)
+                        @Html.EditorFor(model => model.Batch.Name, new { htmlAttributes = new { @class = "form-control", disabled = ""} })
                     </div>
 
                     <div class="mb-4">
@@ -54,7 +54,7 @@
 
                     <div class="mb-4">
                         @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter note", autocomplete = "off"} })
+                        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter note", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.Note, "", new { @class = "invalid-feedback" })
                     </div>
                     <div class="mt-3">
