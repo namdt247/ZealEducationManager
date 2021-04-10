@@ -8,29 +8,18 @@
 
 <h4 class="py-3">List Certificates</h4>
 
-<div class="card shadow-sm table-wrapper table-responsive">
+<div class="card shadow-sm table-wrapper table-responsive mb-3">
     <table class="display table table-flush" id="table_id">
         <thead class="thead-light">
             <tr>
                 <th class="text-center">#</th>
-                <th>
-                    Student
-                </th>
-                <th>
-                    Batch
-                </th>
-                <th>
-                    Course
-                </th>
-                <th>
-                    Mark
-                </th>
-                <th>
-                    Registration Date
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
+                <th>Student</th>
+                <th>Batch</th>
+                <th>Course</th>
+                <th>Mark</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +45,9 @@
                     </td>
                     <td class="text-danger">
                         @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td class="text-right">
+                        <a href="@Url.Action("DetailsCertificate", "Reports", new { id = item.Id })" class="me-4 text-warning pe-4"><i class="fa fa-pencil-alt"></i></a>
                     </td>
                 </tr>
             }

@@ -101,5 +101,20 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             }
             return View(batch);
         }
+        // detail ending batch
+        public ActionResult DetailsCertificate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Batch batch = db.Batches.Find(id);
+            if (batch == null)
+            {
+                return HttpNotFound();
+            }
+            return View(batch);
+        }
+        
     }
 }

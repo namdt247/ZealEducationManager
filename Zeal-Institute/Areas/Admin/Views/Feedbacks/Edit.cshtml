@@ -22,43 +22,43 @@
                     @Html.HiddenFor(model => model.Id)
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.FbEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.FbEmail, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.LabelFor(model => model.FbEmail, "Email", htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.FbEmail, new { htmlAttributes = new { @class = "form-control", @readonly = ""} })
                         @Html.ValidationMessageFor(model => model.FbEmail, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.FbPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.FbPhone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.LabelFor(model => model.FbPhone, "Phone", htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.FbPhone, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
                         @Html.ValidationMessageFor(model => model.FbPhone, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.FbName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.FbName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.LabelFor(model => model.FbName, "Name", htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.FbName, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
                         @Html.ValidationMessageFor(model => model.FbName, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
+                        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "" })
+                        @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control", disabled = "" })
                         @Html.ValidationMessageFor(model => model.Type, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "" })
+                        @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
                         @Html.ValidationMessageFor(model => model.Content, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "" })
                         @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Note, "", new { @class = "invalid-feedback" })
                     </div>
 
                     <div class="mb-4">
-                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "" })
                         @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Status, "", new { @class = "invalid-feedback" })
                     </div>
