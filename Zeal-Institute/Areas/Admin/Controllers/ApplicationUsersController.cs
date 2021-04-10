@@ -14,6 +14,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
 {
     public class ApplicationUsersController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
         private RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
@@ -53,6 +54,24 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FullName,RollNumber,Address,Avatar,Description,CreatedAt,Status,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
+            var passwordHash = new PasswordHasher();
+            string password = passwordHash.HashPassword("123456");
+            Random r = new Random();
+            int num = r.Next();
+
+            applicationUser.UserName = applicationUser.FullName;
+            applicationUser.EmailConfirmed = false;
+            applicationUser.Status = ApplicationUser.UserStatus.ACTIVE;
+            applicationUser.PasswordHash = password;
+            applicationUser.PhoneNumberConfirmed = false;
+            applicationUser.LockoutEndDateUtc = null;
+            applicationUser.LockoutEnabled = false;
+            applicationUser.AccessFailedCount = 0;
+            applicationUser.TwoFactorEnabled = false;
+            applicationUser.SecurityStamp = "1";
+            applicationUser.CreatedAt = DateTime.Now;
+            applicationUser.RollNumber = "D006" + num.ToString();
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(applicationUser);

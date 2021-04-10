@@ -20,32 +20,32 @@
                 <div class="col-sm-6 col-md-6">
                     <div class="mb-4">
                         @Html.LabelFor(model => model.FullName, "Full name", htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter full name", required = "" } })
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter full name", required = "", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "invalid-feedback" })
                     </div>
                     <div class="mb-4">
                         @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.Avatar, new { htmlAttributes = new { @class = "form-control", id = "thumbnail", disabled = ""} })
+                        @Html.EditorFor(model => model.Avatar, new { htmlAttributes = new { @class = "form-control", id = "thumbnail", disabled = "", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "invalid-feedback" })
                     </div>
                     <div class="mb-4">
                         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email" } })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email", autocomplete = "off", required = "" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "invalid-feedback" })
                     </div>
                     <div class="mb-4">
                         @Html.LabelFor(model => model.PhoneNumber, "Phone number", htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter phone number" } })
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter phone number", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "invalid-feedback" })
                     </div>
                     <div class="mb-4">
                         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter address" } })
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter address", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.Address, "", new { @class = "invalid-feedback" })
                     </div>
                     <div class="mb-4">
                         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "" })
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description" } })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "invalid-feedback" })
                     </div>
                 </div>

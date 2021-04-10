@@ -82,6 +82,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                feedback.Status = Feedback.FeedbackStatus.DONE;
                 db.Entry(feedback).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
