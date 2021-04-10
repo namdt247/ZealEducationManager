@@ -73,6 +73,22 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             var ListCertificate = db.Certificates.OrderByDescending(x => x.RegistrationDate).ToList();
             return View(ListCertificate);
         }
+
+        public ActionResult DetailsCertificate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Certificate certificate = db.Certificates.Find(id);
+            if (certificate == null)
+            {
+                return HttpNotFound();
+            }
+            return View(certificate);
+        }
+
+
         // detail ending batch
         public ActionResult DetailsEnding(int? id)
         {
@@ -101,20 +117,5 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             }
             return View(batch);
         }
-        // detail ending batch
-        public ActionResult DetailsCertificate(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Batch batch = db.Batches.Find(id);
-            if (batch == null)
-            {
-                return HttpNotFound();
-            }
-            return View(batch);
-        }
-        
     }
 }
