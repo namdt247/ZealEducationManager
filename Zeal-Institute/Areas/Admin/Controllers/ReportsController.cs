@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -73,7 +74,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             var ListCertificate = db.Certificates.OrderByDescending(x => x.RegistrationDate).ToList();
             return View(ListCertificate);
         }
-
+        // GET: Admin/Reports/DetailsCertificate/1
         public ActionResult DetailsCertificate(int? id)
         {
             if (id == null)
@@ -87,7 +88,23 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             }
             return View(certificate);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DetailsCertificate([Bind(Include = "Id,ApplicationUserId,BatchId,RegistrationDate,ReceivedDate,Note,Status")] Certificate certificate)
+        {
+            if (ModelState.IsValid)
+            {
+                certificate.ApplicationUserId = certificate.ApplicationUser.Id;
+                certificate.BatchId = certificate.Batch.Id;
+                certificate.Status = Certificate.CertificateStatus.DONE;
+                certificate.ReceivedDate = DateTime.Now;
 
+                db.Entry(certificate).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(certificate);
+        }
 
         // detail ending batch
         public ActionResult DetailsEnding(int? id)
