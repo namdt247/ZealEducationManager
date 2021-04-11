@@ -56,8 +56,14 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Code,CourseId,ListStudent,Description,DateStart,DateEnd,Status")] Batch batch)
         {
+            Debug.WriteLine(batch);
             if (ModelState.IsValid)
             {
+                //if (batch.ListStudent.Length > 0)
+                //{
+                //    string ids = String.Join(",", batch.ListStudent);
+                //    batch.ListStudent = ids;
+                //}
                 db.Batches.Add(batch);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,6 +81,10 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Batch batch = db.Batches.Find(id);
+
+            var role = roleManager.FindByName("Student").Users.First();
+            var listStudent = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+            ViewData["dataStudent"] = listStudent;
             if (batch == null)
             {
                 return HttpNotFound();
@@ -146,8 +156,23 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+        public JsonResult GetListIdStudent(int id)
+        {
+            var listStudent = new List<string>();
+            Batch batch = db.Batches.Find(id);
+            if (id != null)
+            {
+                string[] subse = batch.ListStudent.Split(',');
+                for (int i = 0; i < subse.Length - 1; i++)
+                {
+                    var idStudent = subse[i];
+                    listStudent.Add(idStudent);
+                }
+            }
+            return Json(listStudent, JsonRequestBehavior.AllowGet);
 
-        public JsonResult GetListStudent(string searchTerm)
+        }
+        public JsonResult GetListStudentSelect(string searchTerm)
         {
             var role = roleManager.FindByName("Student").Users.First();
             var listStudent = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
