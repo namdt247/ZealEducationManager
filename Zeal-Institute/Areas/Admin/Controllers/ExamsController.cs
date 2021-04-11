@@ -52,8 +52,20 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,BatchId,DateExam,StartTime,Status")] Exam exam)
         {
+            Batch batch = db.Batches.Find(exam.BatchId);
             if (ModelState.IsValid)
             {
+                if (batch.ListStudent != null)
+                {
+                    string[] subse = batch.ListStudent.Split(',');
+                    for (int i = 0; i < subse.Length - 1; i++)
+                    {
+                        var idStudent = subse[i];
+                        var student = db.Users.Where(s => s.Id == idStudent).Single();
+                        db.ExamDetails.Add(new ExamDetail { ExamId = exam.Id, ApplicationUserId = student.Id, Mark = 0, Note = "" });
+                    }
+                }
+                exam.Status = Exam.ExamStatus.ONGOING;
                 db.Exams.Add(exam);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,6 +141,30 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateExamDetails(Array exam)
+        {
+            if (ModelState.IsValid)
+            {
+                if (exam.Length > 0)
+                {
+                    for (int i = 0; i < exam.Length; i++)
+                    {
+                        
+                    }
+                    
+
+                } else
+                {
+                    return View(exam);
+                }
+                db.Entry(exam).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(exam);
         }
     }
 }

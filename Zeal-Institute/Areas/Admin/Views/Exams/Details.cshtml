@@ -9,7 +9,12 @@
 <p class="text-left">
     <a href="@Url.Action("Index", "Exams")" class="text-gray-700"><i class="fas fa-angle-left me-2"></i> Back to List</a>
 </p>
-<h4>Exam details <a href="@Url.Action("Edit", "Exams", new { id = Model.Id })" type="button" class="btn btn-sm btn-warning float-end me-3"><i class="fa fa-pen"></i> Edit</a></h4>
+<h4>
+    Exam details
+    <a class="btn btn-sm btn-warning float-end me-3" id="editExamDetail"><i class="fa fa-pen"></i> Edit</a>
+    <a class="btn btn-sm btn-success float-end me-3 d-none" id="saveExamDetail"><i class="fa fa-save"></i> Save</a>
+    <a class="btn btn-sm btn-black float-end me-3 d-none" id="cancelExamDetail"><i class="fa fa-times"></i> Cancel</a>
+</h4>
 
 <div class="card shadow-sm table-wrapper table-responsive mb-3">
     <div class="dl-horizontal">
@@ -51,40 +56,119 @@
                 <th>Student</th>
                 <th>Roll Number</th>
                 <th>Mark</th>
+                <th class="d-none"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in (List<Zeal_Institute.Models.ExamDetail>)ViewData["ListExamStudent"])
             {
                 count++;
-            <tr>
-                <td class="text-center">
-                    @count
-                </td>
-                <td>
-                    <img class="image-list-object" src="@item.ApplicationUser.Avatar" alt="avatar" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationUser.RollNumber)
-                </td>
-                @if (item.Mark >= 40)
-                {
-                    <td class="text-success">
-                        @Html.DisplayFor(modelItem => item.Mark)%
+                <tr>
+                    <td class="text-center">
+                        @count
                     </td>
-                }
-                else
-                {
-                    <td class="text-danger">
-                        @Html.DisplayFor(modelItem => item.Mark)%
+                    <td>
+                        <img class="image-list-object" src="@item.ApplicationUser.Avatar" alt="avatar" />
                     </td>
-                }
-
-            </tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.RollNumber)
+                    </td>
+                    @if (item.Mark >= 40)
+                    {
+                        <td class="text-success mark_text">
+                            @Html.DisplayFor(modelItem => item.Mark)%
+                        </td>
+                        <td class="text-success mark d-none">
+                            <input type="number" min="0" max="100" value="@Html.DisplayFor(modelItem => item.Mark)" data-ExamId="@item.ExamId" data-ApplicationUserId="@item.ApplicationUserId" data-Note="@item.Note"/>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="text-danger mark_text">
+                            @Html.DisplayFor(modelItem => item.Mark)%
+                        </td>
+                        <td class="text-danger mark d-none">
+                            <input type="number" min="0" max="100" value="@Html.DisplayFor(modelItem => item.Mark)" data-ExamId="@item.ExamId" data-ApplicationUserId="@item.ApplicationUserId" data-Note="@item.Note" />
+                        </td>
+                    }
+                </tr>
             }
         </tbody>
     </table>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#editExamDetail').click(function () {
+                $('#saveExamDetail').removeClass('d-none');
+                $('#cancelExamDetail').removeClass('d-none');
+                $('.mark_text').addClass('d-none');
+                $('.mark').removeClass('d-none');
+                $(this).addClass('d-none');
+            });
+            $('#cancelExamDetail').click(function () {
+                $('#saveExamDetail').addClass('d-none');
+                $('#editExamDetail').removeClass('d-none');
+                $('.mark_text').removeClass('d-none');
+                $('.mark').addClass('d-none');
+                $(this).addClass('d-none');
+            });
+            $('#saveExamDetail').click(function () {
+                var arrUpdate = [];
+                var checkNull = true;
+                var checkUndefined = true;
+                $('.mark').each(function (index) {
+                    console.log($(this).find('input').attr("data-ExamId"))
+                    var obj = {
+                        ExamId: parseInt($(this).find('input').attr("data-ExamId")),
+                        ApplicationUserId: $(this).find('input').attr("data-ApplicationUserId"),
+                        Note: $(this).find('input').attr("data-Note")
+                    };
+                    var val_mark = $(this).find('input').val();
+                    if (val_mark === undefined) {
+                        checkUndefined = false;
+                    } else if (val_mark === null) {
+                        checkNull = false;
+                    } else {
+                        obj['Mark'] = parseFloat(val_mark);
+                    }
+                    arrUpdate.push(obj);
+                });
+                console.log(arrUpdate)
+                if (!checkNull) {
+                    alert("Enter mark");
+                    return false;
+                } else {
+                    if (!checkUndefined) {
+                        alert("Values are greater than 0 and less than 100");
+                        return false;
+                    } else {
+                        $.ajax({
+                            url: "/Admin/Exams/UpdateExamDetails",
+                            method: "POST",
+                            dataType: "json",
+                            data: { dataExam: arrUpdate },
+                            success: function (result, status, xhr) {
+                                console.log(result)
+                                if (result) {
+                                    alert("Update Success");
+                                    $('#saveExamDetail').addClass('d-none');
+                                    $('#cancelExamDetail').addClass('d-none');
+                                    $('.mark_text').removeClass('d-none');
+                                    $('.mark').addClass('d-none');
+                                    $('#editExamDetail').removeClass('d-none');
+                                } else {
+                                    alert("Update Fail");
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+}
