@@ -43,9 +43,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Content)
                 </td>
-                <td class="text-danger">
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
+                @if (!(item.Status == Zeal_Institute.Models.Feedback.FeedbackStatus.DONE))
+                {
+                    <td class="text-danger">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+                else
+                {
+                    <td class="text-success">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
                 <td class="text-right">
                     @if (!(item.Status == Zeal_Institute.Models.Feedback.FeedbackStatus.DONE))
                     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,6 +34,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Batch batch = db.Batches.Find(id);
+            ViewData["data_student"] = "";
             if (batch == null)
             {
                 return HttpNotFound();
@@ -157,9 +159,19 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 id = x.Id,
                 text = x.FullName + " - " + x.RollNumber
             });
-            Debug.WriteLine(modifiedData);
             return Json(modifiedData, JsonRequestBehavior.AllowGet);
 
+        }
+        [HttpPost]
+        // add student
+        public JsonResult PostStudent(string id)
+        {
+            ApplicationUser btc = db.Users.Find(id);
+            if (btc == null)
+            {
+                return null;
+            }
+            return Json(btc, JsonRequestBehavior.AllowGet);
         }
     }
 }
