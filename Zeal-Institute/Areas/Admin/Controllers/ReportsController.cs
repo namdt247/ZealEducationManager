@@ -111,6 +111,15 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Batch batch = db.Batches.Find(id);
+
+            var listStudent = new List<ApplicationUser>();
+            string[] subse = batch.ListStudent.Split(',');
+            for (int i = 0; i < subse.Length - 1; i++)
+            {
+                var idStudent = subse[i];
+                listStudent.Add(db.Users.Where(s => s.Id == idStudent).Single());
+            }
+            ViewData["ListStudent_End"] = listStudent;
             if (batch == null)
             {
                 return HttpNotFound();
@@ -125,6 +134,15 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Batch batch = db.Batches.Find(id);
+
+            var listStudent = new List<ApplicationUser>();
+            string[] subs = batch.ListStudent.Split(',');
+            for (int i = 0; i < subs.Length - 1; i++)
+            {
+                var idStudent = subs[i];
+                listStudent.Add(db.Users.Where(s => s.Id == idStudent).Single());
+            }
+            ViewData["ListStudent_Start"] = listStudent;
             if (batch == null)
             {
                 return HttpNotFound();
