@@ -44,5 +44,14 @@ namespace Zeal_Institute.Models
             [Display(Name = "Deleted")]
             DELETED
         }
+
+        public bool CheckCertificate(string UserID, int BatchId)
+        {
+            if (UserID.Equals(ApplicationUserId) && BatchId == this.BatchId)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

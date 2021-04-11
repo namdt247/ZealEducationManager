@@ -16,5 +16,11 @@ namespace Zeal_Institute.Controllers
             var Courses = db.Courses.ToList();
             return View(Courses);
         }
+
+        public ActionResult Detail(int id)
+        {
+            var Courses = db.Courses.Find(id);
+            return View(Courses);
+        }
     }
 }
