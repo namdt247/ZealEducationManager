@@ -58,6 +58,10 @@ namespace Zeal_Institute.Controllers
         {
            
             var UserId = User.Identity.GetUserId();
+            if (UserId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var user = db.Users.Find(UserId);
             ViewBag.User = user;
             var ExamDetails = db.ExamDetails.Where(e => e.ApplicationUserId == UserId && e.Mark > 40).ToList();
@@ -252,33 +256,37 @@ namespace Zeal_Institute.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
+        //public ActionResult ChangePassword()
+        //{
+        //    return View();
+        //}
 
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<ActionResult> ChangePassword(string oldPwd, string newPwd)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
+                var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), oldPwd, newPwd);
+                if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+                    return Json(new { code = 200 }, JsonRequestBehavior.AllowGet);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                else
+                {
+                    return Json(new { code = 500 }, JsonRequestBehavior.AllowGet);
+                }
             }
-            AddErrors(result);
-            return View(model);
+            catch
+            {
+                return Json(new { code = 600 }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         //

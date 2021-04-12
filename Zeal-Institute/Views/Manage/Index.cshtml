@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Manage";
     var i = 1;
-    var user = (Zeal_Institute.Models.ApplicationUser) ViewBag.User;
+    var user = (Zeal_Institute.Models.ApplicationUser)ViewBag.User;
 }
 
 <div class="container">
@@ -38,7 +38,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
-                            <span class="text-secondary"></span>
+                            <span class="text-secondary">https://github.com</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
@@ -100,6 +100,15 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 @user.Address
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Change Password</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <button type="button" class="btn btn-light btn-sm border-primary" data-toggle="modal" data-target="#changePwdModal">Click here</button>
                             </div>
                         </div>
                     </div>
@@ -189,9 +198,104 @@
     </div>
 </div>
 
+<!--model change password-->
+<div class="modal fade" id="changePwdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-title text-center">
+                    <h4>Change Passwod</h4>
+                </div>
+                <div class="d-flex flex-column text-center">
+                    <form name="changePw">
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="OldPwd" name="OldPwd" placeholder="Your Old Password...">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="NewPwd" name="NewPwd" placeholder="Your New Password...">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="ConfirmPwd" name="ConfirmPwd" placeholder="Confirm Password...">
+                        </div>
+                        <button type="button" class="btn btn-info btn-block btn-round" name="btn-changePwd" id="btn-changePwd">Submit</button>
+                    </form>
+
+                    <div class="text-center text-muted delimiter">or use a social network</div>
+                    <div class="d-flex justify-content-center social-buttons">
+                        <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
+                            <i class="fab fa-linkedin"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal alert -->
+<div class="modal fade" id="alertChangePwd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Changed Password Successfully!</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section MyScript{
     <script>
         $(document).ready(function () {
+            $("form[name=changePw]").validate({
+                rules: {
+                    OldPwd: {
+                        required: true,
+                    },
+                    NewPwd: {
+                        required: true,
+                        minlength: 6,
+                    },
+                    ConfirmPwd: {
+                        required: true,
+                        minlength: 6,
+                        equalTo: "input[name=NewPwd]"
+                    },
+                },
+                messages: {
+                    OldPwd: {
+                        required: "Please enter your old password !"
+                    },
+                    NewPwd: {
+                        required: "Please enter your new password !",
+                        minlength: "Password must more than 6 characters !",
+                    },
+                    ConfirmPwd: {
+                        required: "Please enter confirm new password !",
+                        minlength: "Password must more than 6 characters !",
+                        equalTo: "Password is not match, please enter the password !"
+                    }
+                }
+            });
+
             $(document).on('click', '.registration', function () {
                 var userid = $(this).data('userid')
                 var batchid = parseInt($(this).data('batchid'))
@@ -206,12 +310,42 @@
                                 $('#registrationmodel').modal('toggle');
 
                             }
-                             location.reload();
+                            location.reload();
                         }
                     });
                 });
 
             })
+
+            $(document).on('click', '#btn-changePwd', function () {
+                var validation = $("form[name=changePw]").valid();
+                if (validation) {
+                    var oldPwd = $('#OldPwd').val();
+                    var newPwd = $('#NewPwd').val();
+
+                    $.ajax({
+                        url: "/Manage/ChangePassword",
+                        method: "POST",
+                        data: { oldPwd: oldPwd, newPwd: newPwd },
+                        dataType: "json",
+                        
+                        success: function(data) {
+                            if (data.code == 200) {
+                                $('#OldPwd').val("");
+                                $('#NewPwd').val("");
+                                $('#ConfirmPwd').val("");
+                                $('#changePwdModal').modal('toggle');
+                                $('#alertChangePwd').modal();
+                            }
+                        },
+                       
+                        error: function (data) {
+                            alert("Changed password fail !!")
+                        }
+                    });
+                }
+            })
+
         });
     </script>
 }
