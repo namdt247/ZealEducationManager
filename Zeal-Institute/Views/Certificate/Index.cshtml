@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Zeal_Institute.Models.InfoCourseViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var i = 1;
+}
+
+<section class="certificate-details">
+
+    <div class="container">
+        <div class="row">
+            <h1>Đăng Ký Các Khóa Học</h1>
+            <table id="mytable" class="table table-bordred table-striped align-items-center">
+
+                <thead>
+
+                <th>STT</th>
+                <th>Lớp Học</th>
+                <th>Khóa Học</th>
+                <th>Điểm</th>
+                <th>Ngày Nhận</th>
+
+                <th>Thao Tác</th>
+
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(i++)</td>
+                            <td>@item.BatchName</td>
+                            <td>@item.CourseName</td>
+                            <td>@item.Mark %</td>
+                            @if (item.ReceivedDate == null)
+                            {
+                                <td>--/--/--</td>
+                            }
+                            else
+                            {
+
+                                <td>@item.ReceivedDate</td>
+                            }
+                            @if (item.IsCertificate == false)
+                            {
+                                <td><button class="btn btn-primary registration" role="button" data-userid="@item.UserId" data-batchid="@item.BatchId">Đăng Ký Chứng Chỉ</button></td>
+                            }
+                            else
+                            {
+                                <td><button type="button" class="btn btn-primary disabled">Đã Đăng Ký</button></td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="modal fade" id="registrationmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-title text-center">
+                                <h4>Bạn Có Muốn Đăng Ký Chứng Chỉ Cho Khóa Học Không ?</h4>
+                            </div>
+                            <br />
+                            <div class="d-flex flex-column text-center">
+                                <button type="button" class="btn btn-info btn-block btn-round" name="btn-registration" id="btn-registration">Đồng Ý</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section MyScript{
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.registration', function () {
+                var userid = $(this).data('userid')
+                var batchid = parseInt($(this).data('batchid'))
+                $('#registrationmodel').modal();
+                $('#btn-registration').click(function () {
+                    $.ajax({
+                        url: "/Certificate/Registration",
+                        method: "POST",
+                        data: { userid: userid, batchid: batchid },
+                        success: function (data) {
+                            if (data.code == 200) {
+                                $('#registrationmodel').modal('toggle');
+
+                            }
+                             location.reload();
+                        }
+                    });
+                });
+
+            })
+        });
+    </script>
+}

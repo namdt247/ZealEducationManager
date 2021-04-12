@@ -32,14 +32,14 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="course-post">
                                 <div class="course-thumbnail-holder">
-                                    <a href="single-course.html">
+                                    <a>
                                         <img style="width: 244px; height: 137px" src="@item.Thumbnail" alt="">
                                     </a>
                                 </div>
                                 <div class="course-content-holder">
                                     <div style="width: 244px; height: 154px" class="course-content-main">
                                         <h2 class="course-title">
-                                            <a href="single-course.html">@item.Description</a>
+                                            <a href="@Url.Action("Detail", "Course", new {id = item.Id })">@item.Description</a>
                                         </h2>
                                         <div class="course-rating-teacher">
                                             <div class="star-rating has-ratings" title="Rated 5.00 out of 5">
@@ -48,7 +48,7 @@
                                                     <span class="votes-number">1 Votes</span>
                                                 </span>
                                             </div>
-                                            <a href="#" class="course-loop-teacher">Duha Samra</a>
+                                            <a href="@Url.Action("Detail", "Course", new {id = item.Id })" class="course-loop-teacher">Detail</a>
                                         </div>
                                     </div>
                                     <div class="course-content-bottom">
@@ -75,50 +75,34 @@
                     <div class="category-widget widget">
                         <h2>Product categories</h2>
                         <ul class="category-list">
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Photography</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">Web Development</a></li>
+                            <li><a >Design</a></li>
+                            <li><a >Photography</a></li>
+                            <li><a >Technology</a></li>
+                            <li><a >Web Design</a></li>
+                            <li><a >Web Development</a></li>
                         </ul>
                     </div>
 
                     <div class="products-widget widget">
                         <h2>Products</h2>
                         <ul class="products-list">
-                            <li>
-                                <a href="single-course.html"><img src="http://nunforest.com/studiare/upload/courses/thumb1@2x.jpg" alt=""></a>
-                                <div class="list-content">
-                                    <h3><a href="single-course.html">Introduction Web Design with HTML</a></h3>
-                                    <span>$244</span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="single-course.html"><img src="http://nunforest.com/studiare/upload/courses/thumb2@2x.jpg" alt=""></a>
-                                <div class="list-content">
-                                    <h3><a href="single-course.html">Special Education Needs Teaching</a></h3>
-                                    <span>$74.99</span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="single-course.html"><img src="http://nunforest.com/studiare/upload/courses/thumb3@2x.jpg" alt=""></a>
-                                <div class="list-content">
-                                    <h3><a href="single-course.html">Environmental Science BTEC Course</a></h3>
-                                    <span>$59.99</span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="single-course.html"><img src="http://nunforest.com/studiare/upload/courses/thumb4@2x.jpg" alt=""></a>
-                                <div class="list-content">
-                                    <h3><a href="single-course.html">Distance Learning MBA Management</a></h3>
-                                    <span>$17.88</span>
-                                </div>
-                            </li>
+                            @foreach (var item in Model)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Detail", "Course", new {id = item.Id })"><img src="@item.Thumbnail" alt=""></a>
+                                    <div class="list-content">
+                                        <h3><a href="@Url.Action("Detail", "Course", new {id = item.Id })">@item.Name</a></h3>
+                                        <span>$ @item.Price</span>
+                                    </div>
+                                </li>
+                            }
+
+
                         </ul>
                     </div>
 
                     <div class="ads-widget widget">
-                        <a href="#">
+                        <a >
                             <img src="http://nunforest.com/studiare/upload/blog/ad-banner@2x.jpg" alt="">
                         </a>
                     </div>

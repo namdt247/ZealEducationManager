@@ -6,27 +6,38 @@
 <!-- end map section -->
 <!-- contact-section
     ================================================== -->
+<style>
+    section.contact-section #contact-form label {
+        color: red
+    }
+</style>
 <section class="contact-section">
     <div class="container">
         <div class="contact-box">
             <h1>Get in Touch</h1>
             <p>Someone finds it difficult to understand your creative idea? There is a better visualisation. Share your views with us, we’re looking forward to hear from you.</p>
-            <form id="contact-form">
+            <form id="contact-form" name="contact">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="name">Your Name (required)</label>
-                        <input name="name" id="name" type="text">
+                        <input name="ctname" id="ctname" type="text" placeholder="Your Name">
                     </div>
                     <div class="col-md-6">
-                        <label for="mail">Your Email (required)</label>
-                        <input name="mail" id="mail" type="text">
+                        <input name="ctmail" id="ctmail" type="text" placeholder="Your Email">
                     </div>
                 </div>
-                <label for="tel-number">Your Phone Number</label>
-                <input name="tel-number" id="tel-number" type="text">
-                <label for="comment">Your Message (required)</label>
-                <textarea name="comment" id="comment"></textarea>
-                <button type="submit" id="submit_contact">Submit Message</button>
+                <input name="ctTelNumber" id="ctTelNumber" type="text" placeholder="Your Phone Number">
+                <div class="form-group">
+                    <select id="ctType" name="ctType" class="form-control">
+                        <option selected>Feedback Type</option>
+                        <option value=@Zeal_Institute.Models.Feedback.FeedbackType.REGISTER>Register for course</option>
+                        <option value=@Zeal_Institute.Models.Feedback.FeedbackType.DETAIL>Detail of course</option>
+                        <option value=@Zeal_Institute.Models.Feedback.FeedbackType.ORTHER>Other</option>
+                    </select>
+                </div>
+               
+                <textarea name="ctcomment" id="ctcomment" placeholder="Your Feedback"></textarea>
+                <br />
+                <button type="button" id="btnContact" name="btnContact">Submit Message</button>
                 <div id="msg" class="message"></div>
             </form>
         </div>
@@ -87,3 +98,125 @@
     </div>
 </section>
 <!-- End contact-info section -->
+<!--medal alert-->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-title text-center">
+                                <h4>Gửi Feedback Thành Công !</h4>
+                            </div>
+                            <br />
+                            <div class="d-flex flex-column text-center">
+                                <a href="" class="btn btn-outline-primary" data-dismiss="modal">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section MyScript{
+    <script>
+        $(document).ready(function () {
+            $.validator.addMethod("checkType", function (value, element,) {
+                if (value === "REGISTER" || value === "DETAIL"
+                    || value === "ORTHER") {
+                    return true;
+                }
+                return false;
+            }, "value is invalid !");
+
+            $.validator.addMethod("FormatPhoneNumber", function (value, element,) {
+                var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+                if (vnf_regex.test(value)) {
+                    return true;
+                }
+                return false;
+            }, "SDT phai cua Viet Name");
+
+            $('form[name="contact"]').validate({
+                rules: {
+                    ctmail: {
+                        required: true,
+                        email: true,
+                    },
+                    ctname: {
+                        required: true,
+                    },
+                    ctcomment: {
+                        required: true,
+                    },
+                    ctTelNumber: {
+                        minlength: 10,
+                        FormatPhoneNumber: true
+                    },
+                    ctType: {
+                        checkType: true
+                    }
+                },
+                messages: {
+                    ctmail: {
+                        required: "please enter your email !",
+                        email: "Email Invalid !",
+                    },
+                    ctname: {
+                        required: "please enter your name !",
+                    },
+                    ctcomment: {
+                        required: "please enter your content !",
+                    },
+                    ctTelNumber: {
+                        minlength: "phone number must have 10 numbers ",
+                        FormatPhoneNumber: "phone number must be Vietnam area code"
+                    },
+                    ctType: {
+                        checkType: "type is invalid !"
+                    }
+                }
+            });
+
+            $(document).on('click', '#btnContact', function () {
+                var validateForm = $('form[name="contact"]').valid();
+                if (validateForm) {
+                    var email = $('#ctmail').val();
+                    var name = $('#ctname').val();
+                    var phone = $('#ctTelNumber').val();
+                    var type = $('#ctType').val();
+                    var content = $('#ctcomment').val();
+
+                    $.ajax({
+                        url: "/home/Feedback",
+                        method: "POST",
+                        data: { email: email, name: name, phone: phone, type: type, content: content },
+                        success: function (data) {
+                            if (data.code == 200) {
+                                email = $('#ctmail').val("");
+                                name = $('#ctname').val("");
+                                phone = $('#ctTelNumber').val("");
+                                type = $('#ctType').val(type);
+                                content = $('#ctcomment').val("");
+                                $('#myModal').modal('toggle');
+                                $('#alert').modal();
+
+                                console.log(data)
+                            }
+                        }
+                    });
+                }
+
+            })
+        });
+    </script>
+}
