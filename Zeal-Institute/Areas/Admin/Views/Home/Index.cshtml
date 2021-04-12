@@ -4,20 +4,116 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dashboard</h2>
+<h2>Admin Page</h2>
 
-<h5>Student statistics</h5>
+@* General info *@
 
-<div class="col-4">
-    <div class="form-control text-center" id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-        <i class="fa fa-calendar"></i>&nbsp;
-        <span></span> <i class="fa fa-caret-down"></i>
+<div class="row justify-content-md-center">
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        <div class="card border-light shadow-sm text-white" style="background-color: #00c0ef;">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon icon-shape icon-md icon-shape-facebook rounded me-4 me-sm-0" style="background-color: rgb(253 253 253 / 0.3)">
+                            <span class="fas fa-users"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h5">Students</h2>
+                            <h3 class="mb-1">@Html.Raw(ViewBag.countStudent)</h3>
+                        </div>
+                        <a href="#">
+                            <small>
+                                More info
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        <div class="card border-light shadow-sm text-white" style="background-color: #00a65a;">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon icon-shape icon-md icon-shape-facebook rounded me-4 me-sm-0" style="background-color: rgb(253 253 253 / 0.3)">
+                            <span class="fas fa-door-open"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h5">Batchs</h2>
+                            <h3 class="mb-1">@Html.Raw(ViewBag.countBatch)</h3>
+                        </div>
+                        <a href="#">
+                            <small>
+                                More info
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        <div class="card border-light shadow-sm text-white" style="background-color: #f39c12;">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon icon-shape icon-md icon-shape-facebook rounded me-4 me-sm-0" style="background-color: rgb(253 253 253 / 0.3)">
+                            <span class="fas fa-chart-line"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h5">Financial</h2>
+                            <h3 class="mb-1">@Html.Raw(ViewBag.dataRevenue)$</h3>
+                        </div>
+                        <a href="#">
+                            <small>
+                                More info
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="py-4">
-    <canvas id="myChart"></canvas>
+<div class="mt-2">
+    <h4>Student statistics</h4>
+    <div class="col-4 my-2">
+        <div class="form-control text-center" id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+            <i class="fa fa-calendar"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div>
+    </div>
+    <div class="p-4 card bg-secondary-alt shadow-sm" id="parentChart">
+        <canvas id="myChart"></canvas>
+    </div>
 </div>
+
+<div class="mt-5 pb-4">
+    <h4>Financial statistics</h4>
+    <div class="col-4 my-2">
+        <div class="form-control text-center" id="reportrange2" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+            <i class="fa fa-calendar"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div>
+    </div>
+    <div class="p-4 card bg-secondary-alt shadow-sm" id="parentChart2">
+        <canvas id="myChart2"></canvas>
+    </div>
+</div>
+
 
 @section Scripts {
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -26,49 +122,157 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" type="text/javascript"></script>
 
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var dataPoint = @Html.Raw(ViewBag.StudentData);
-        var labelChart = Object.keys(dataPoint);
-        var dataChart = Object.values(dataPoint);
+        function chartJs (d) {
+            let ctx = document.getElementById('myChart').getContext('2d');
+            let ctx2 = document.getElementById('myChart');
+            let dataPoint = d ? d : @Html.Raw(ViewBag.StudentData);
+            let labelChart = Object.keys(dataPoint);
+            let dataChart = Object.values(dataPoint);
 
-        console.log(dataPoint);
-
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labelChart,
-                datasets: [
-                    {
-                        label: 'Total Student',
-                        fill: false,
-                        data: dataChart,
-                        borderColor: '#fd9e38',
-                        borderWidth: 1,
-                        lineTension: .4,
-                        borderDash: [],
-                        pointBorderColor: '#fd9e38',
-                        pointBackgroundColor: '#ffffff',
-                        pointBorderWidth: 1.5,
-                        pointHoverRadius: 4,
-                        pointHoverBackgroundColor: '#fd9e38',
-                        pointHoverBorderColor: '#fd9e38',
-                        pointHoverBorderWidth: 1,
-                        pointRadius: 4,
-                        pointHitRadius: 1,
-                        hidden: false,
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+            if (d) {
+                ctx2.remove();
+                let parent = document.getElementById("parentChart");
+                let createCanvas = document.createElement("canvas");
+                createCanvas.setAttribute("id", "myChart");
+                parent.appendChild(createCanvas);
+                ctx = document.getElementById('myChart').getContext('2d');
             }
-        });
+
+            let myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labelChart,
+                    datasets: [
+                        {
+                            label: 'Total Student',
+                            fill: false,
+                            data: dataChart,
+                            borderColor: '#fd9e38',
+                            borderWidth: 1,
+                            lineTension: .4,
+                            borderDash: [],
+                            pointBorderColor: '#fd9e38',
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderWidth: 1.5,
+                            pointHoverRadius: 4,
+                            pointHoverBackgroundColor: '#fd9e38',
+                            pointHoverBorderColor: '#fd9e38',
+                            pointHoverBorderWidth: 1,
+                            pointRadius: 4,
+                            pointHitRadius: 1,
+                            hidden: false,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 18,
+                                    weight: '500',
+                                },
+                                color: '#262b40',
+                            },
+                        },
+                    },
+                    scales: {
+                        yAxes: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#262b40',
+                            },
+                        },
+                        xAxes: {
+                            ticks: {
+                                color: '#262b40',
+                            },
+                        }
+                    },
+                }
+            });
+        };
+        chartJs(null);
     </script>
+
+    <script>
+        function chartJs2 (d) {
+            let ctx = document.getElementById('myChart2').getContext('2d');
+            let ctx2 = document.getElementById('myChart2');
+            let dataPoint = d ? d : @Html.Raw(ViewBag.FinancialData);
+            console.log(dataPoint);
+            let labelChart = Object.keys(dataPoint);
+            let dataChart = Object.values(dataPoint);
+
+            if (d) {
+                ctx2.remove();
+                let parent = document.getElementById("parentChart2");
+                let createCanvas = document.createElement("canvas");
+                createCanvas.setAttribute("id", "myChart2");
+                parent.appendChild(createCanvas);
+                ctx = document.getElementById('myChart2').getContext('2d');
+            }
+
+            let myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labelChart,
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            //fill: false,
+                            data: dataChart,
+                            backgroundColor: '#25B986',
+                            //borderColor: '#fd9e38',
+                            //borderWidth: 1,
+                            //lineTension: .4,
+                            //borderDash: [],
+                            //pointBorderColor: '#fd9e38',
+                            //pointBackgroundColor: '#ffffff',
+                            //pointBorderWidth: 1.5,
+                            //pointHoverRadius: 4,
+                            //pointHoverBackgroundColor: '#fd9e38',
+                            //pointHoverBorderColor: '#fd9e38',
+                            //pointHoverBorderWidth: 1,
+                            //pointRadius: 4,
+                            //pointHitRadius: 1,
+                            //hidden: false,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 18,
+                                    weight: '500',
+                                },
+                                color: '#262b40',
+                            },
+                        },
+                    },
+                    scales: {
+                        yAxes: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#262b40',
+                            },
+                        },
+                        xAxes: {
+                            ticks: {
+                                color: '#262b40',
+                            },
+                        }
+                    },
+                }
+            });
+        };
+        chartJs2(null);
+    </script>
+
 
     <script type="text/javascript">
         $(function () {
@@ -86,12 +290,63 @@
                 ranges: {
                     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                }
-            }, cb);
+                },
+                maxDate: moment(),
+                minDate: moment().subtract(90, 'days'),
+                autoApply: true,
+            }, function (start, end, label) {
+                $('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+                $.ajax({
+                    url: "/Admin/Home/StudentData",
+                    dataType: "json",
+                    type: "GET",
+                    data: { start: start.format('MM/DD/YYYY'), end: end.format('MM/DD/YYYY') },
+                    success: function (data) {
+                        console.log(data);
+                        chartJs(data);
+                    }
+                });
+            });
 
             cb(start, end);
-
         });
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+
+            var start2 = moment().subtract(29, 'days');
+            var end2 = moment();
+
+            function cb2(start, end) {
+                $('#reportrange2 span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+            }
+
+            $('#reportrange2').daterangepicker({
+                startDate: start2,
+                endDate: end2,
+                ranges: {
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                },
+                maxDate: moment(),
+                minDate: moment().subtract(90, 'days'),
+                autoApply: true,
+            }, function (start, end, label) {
+                $('#reportrange2 span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+                $.ajax({
+                    url: "/Admin/Home/FinancialData",
+                    dataType: "json",
+                    type: "GET",
+                    data: { start: start.format('MM/DD/YYYY'), end: end.format('MM/DD/YYYY') },
+                    success: function (data) {
+                        console.log(data);
+                        chartJs2(data);
+                    }
+                });
+            });
+
+            cb2(start2, end2);
+        });
+    </script>
 }

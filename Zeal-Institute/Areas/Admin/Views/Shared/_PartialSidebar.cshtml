@@ -103,11 +103,11 @@
                                 <span class="sidebar-text">List Student</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link" href="">
                                 <span class="sidebar-text">Student Training</span>
                             </a>
-                        </li>
+                        </li>*@
                         <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" && ViewContext.RouteData.Values["Action"].ToString() == "ListCertificate" ? "active" : "")">
                             <a class="nav-link" href="@Url.Action("ListCertificate", "Reports")">
                                 <span class="sidebar-text">Student Certificates</span>

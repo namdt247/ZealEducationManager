@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +14,7 @@ namespace Zeal_Institute.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -52,27 +54,66 @@ namespace Zeal_Institute.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public async Task<ActionResult> Index()
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+           
+            var UserId = User.Identity.GetUserId();
+            if (UserId == null)
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
-            return View(model);
+                return RedirectToAction("Index", "Home");
+            }
+            var user = db.Users.Find(UserId);
+            ViewBag.User = user;
+            var ExamDetails = db.ExamDetails.Where(e => e.ApplicationUserId == UserId && e.Mark > 40).ToList();
+            var Exams = new List<Exam>();
+            foreach (var item in ExamDetails)
+            {
+                Exams.Add(item.Exam);
+            }
+
+            var query = (from ed in ExamDetails
+                         join e in db.Exams on ed.ExamId equals e.Id
+                         join b in db.Batches on e.BatchId equals b.Id
+                         join c in db.Courses on b.CourseId equals c.Id
+                         select new { ed.Mark, e.BatchId, ed.ApplicationUserId, b.CourseId, c.Name, BatchName = b.Name }
+                        ).ToList();
+
+            var ListModel = new List<InfoCourseViewModel>();
+            foreach (var item in query)
+            {
+                ListModel.Add(new InfoCourseViewModel()
+                {
+                    CourseName = item.Name,
+                    Mark = item.Mark,
+                    BatchId = item.BatchId,
+                    CourseId = item.CourseId,
+                    UserId = item.ApplicationUserId,
+                    BatchName = item.BatchName
+                });
+            }
+
+            var Certificates = db.Certificates.ToList();
+            foreach (var item in ListModel)
+            {
+                foreach (var c in Certificates)
+                {
+                    var rs = c.CheckCertificate(item.UserId, item.BatchId);
+                    if (rs)
+                    {
+                        item.IsCertificate = rs;
+                        if (c.Status == Certificate.CertificateStatus.PENDING)
+                        {
+                            item.ReceivedDate = c.ReceivedDate.ToShortDateString();
+                        }
+                        else
+                        {
+                            item.ReceivedDate = null;
+                        }
+                    }
+
+                }
+            }
+            return View(ListModel);
         }
 
         //
@@ -215,33 +256,37 @@ namespace Zeal_Institute.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
+        //public ActionResult ChangePassword()
+        //{
+        //    return View();
+        //}
 
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<ActionResult> ChangePassword(string oldPwd, string newPwd)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
+                var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), oldPwd, newPwd);
+                if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+                    return Json(new { code = 200 }, JsonRequestBehavior.AllowGet);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                else
+                {
+                    return Json(new { code = 500 }, JsonRequestBehavior.AllowGet);
+                }
             }
-            AddErrors(result);
-            return View(model);
+            catch
+            {
+                return Json(new { code = 600 }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         //

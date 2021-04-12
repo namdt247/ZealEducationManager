@@ -1,7 +1,6 @@
-﻿<header class="clearfix">
+﻿@using Microsoft.AspNet.Identity
 
-
-
+<header class="clearfix">
     <form class="search_bar">
         <div class="container">
             <input type="search" class="search-input" placeholder="What are you looking for...">
@@ -30,14 +29,33 @@
                     <li class="drop-link">
                         <a href="/home/about">About Us</i></a>
                     </li>
-                    
+
                     <li class="drop-link">
                         <a href="/course/index">Courses</a>
                     </li>
                     <li><a href="/home/event">Events</a></li>
                     <li><a href="/home/contact">Contact</a></li>
                 </ul>
-                <a href="#" class="register-modal-opener login-button" data-toggle="modal" data-target="#loginModal"><i class="material-icons">perm_identity</i>Sign In</a>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <span style="margin-bottom:7px;display:inline-block">
+                            @Html.ActionLink("Hi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </span>
+                        <span>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="register-modal-opener login-button"><i class="material-icons">perm_identity</i>Log Out</a>
+
+                        </span>
+                    }
+                }
+                else
+                {
+                    <a href="" class="register-modal-opener login-button" data-toggle="modal" data-target="#loginModal"><i class="material-icons">perm_identity</i>Sign In</a>
+
+                }
+
             </div>
         </div>
     </nav>
@@ -61,10 +79,10 @@
         <nav class="mobile-nav">
             <ul class="mobile-menu-list">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="/home">Home</a>
                 </li>
                 <li class="drop-link">
-                    <a href="#">About Us</a>
+                    <a href="/home/about">About Us</a>
                 </li>
                 <li>
                     <a href="/Course/index">Courses</a>

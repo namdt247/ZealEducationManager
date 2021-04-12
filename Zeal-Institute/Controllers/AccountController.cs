@@ -54,40 +54,39 @@ namespace Zeal_Institute.Controllers
 
         //
         // GET: /Account/Login
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
+        //[AllowAnonymous]
+        //public ActionResult Login(string returnUrl)
+        //{
+        //    ViewBag.ReturnUrl = returnUrl;
+        //    return View();
+        //}
 
         //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(string email, string password)
         {
-            if (!ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                return View(model);
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(email, password, true, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
                 case SignInStatus.Failure:
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
         }
 
