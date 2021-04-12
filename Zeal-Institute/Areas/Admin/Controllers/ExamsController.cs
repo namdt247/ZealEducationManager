@@ -144,23 +144,19 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateExamDetails(Array exam)
+        public ActionResult UpdateExamDetails(string exam)
         {
+            var str = exam;
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            List<ExamDetail> list = serializer.Deserialize<List<ExamDetail>>(str);
+
             if (ModelState.IsValid)
             {
-                if (exam.Length > 0)
+                foreach (var item in list)
                 {
-                    for (int i = 0; i < exam.Length; i++)
-                    {
-                        
-                    }
-                    
-
-                } else
-                {
-                    return View(exam);
+                    var objExamDetail = new ExamDetail() { ExamId = item.ExamId, ApplicationUserId = item.ApplicationUserId, Mark = item.Mark, Note = "" };
+                    db.Entry(objExamDetail).State = EntityState.Modified;
                 }
-                db.Entry(exam).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
