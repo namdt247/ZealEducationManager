@@ -122,7 +122,6 @@
                 var checkNull = true;
                 var checkUndefined = true;
                 $('.mark').each(function (index) {
-                    console.log($(this).find('input').attr("data-ExamId"))
                     var obj = {
                         ExamId: parseInt($(this).find('input').attr("data-ExamId")),
                         ApplicationUserId: $(this).find('input').attr("data-ApplicationUserId"),
@@ -138,7 +137,6 @@
                     }
                     arrUpdate.push(obj);
                 });
-                console.log(arrUpdate)
                 if (!checkNull) {
                     alert("Enter mark");
                     return false;
@@ -151,9 +149,9 @@
                             url: "/Admin/Exams/UpdateExamDetails",
                             method: "POST",
                             dataType: "json",
-                            data: { dataExam: arrUpdate },
+                            traditional: true,
+                            data: { dataExam: JSON.stringify(arrUpdate) },
                             success: function (result, status, xhr) {
-                                console.log(result)
                                 if (result) {
                                     alert("Update Success");
                                     $('#saveExamDetail').addClass('d-none');
