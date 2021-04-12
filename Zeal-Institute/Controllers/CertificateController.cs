@@ -51,7 +51,7 @@ namespace Zeal_Institute.Controllers
                     if (rs)
                     {
                         item.IsCertificate = rs;
-                    if (c.Status == Certificate.CertificateStatus.ACTIVE)
+                    if (c.Status == Certificate.CertificateStatus.PENDING)
                         {
                             item.ReceivedDate = c.ReceivedDate.ToShortDateString();
                         }
@@ -76,7 +76,7 @@ namespace Zeal_Institute.Controllers
                     BatchId = batchid,
                     RegistrationDate = DateTime.Now,
                     Note = "hello world",
-                    Status = Zeal_Institute.Models.Certificate.CertificateStatus.DEACTIVE,
+                    Status = Zeal_Institute.Models.Certificate.CertificateStatus.PENDING,
                 };
 
                 db.Certificates.Add(Certificate);

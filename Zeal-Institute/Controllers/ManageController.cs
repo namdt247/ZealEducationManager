@@ -74,43 +74,42 @@ namespace Zeal_Institute.Controllers
                          select new { ed.Mark, e.BatchId, ed.ApplicationUserId, b.CourseId, c.Name, BatchName = b.Name }
                         ).ToList();
 
-            //var ListModel = new List<InfoCourseViewModel>();
-            //foreach (var item in query)
-            //{
-            //    ListModel.Add(new InfoCourseViewModel()
-            //    {
-            //        CourseName = item.Name,
-            //        Mark = item.Mark,
-            //        BatchId = item.BatchId,
-            //        CourseId = item.CourseId,
-            //        UserId = item.ApplicationUserId,
-            //        BatchName = item.BatchName
-            //    });
-            //}
+            var ListModel = new List<InfoCourseViewModel>();
+            foreach (var item in query)
+            {
+                ListModel.Add(new InfoCourseViewModel()
+                {
+                    CourseName = item.Name,
+                    Mark = item.Mark,
+                    BatchId = item.BatchId,
+                    CourseId = item.CourseId,
+                    UserId = item.ApplicationUserId,
+                    BatchName = item.BatchName
+                });
+            }
 
-            //var Certificates = db.Certificates.ToList();
-            //foreach (var item in ListModel)
-            //{
-            //    foreach (var c in Certificates)
-            //    {
-            //        var rs = c.CheckCertificate(item.UserId, item.BatchId);
-            //        if (rs)
-            //        {
-            //            item.IsCertificate = rs;
-            //            if (c.Status == Certificate.CertificateStatus.PENDING)
-            //            {
-            //                item.ReceivedDate = c.ReceivedDate.ToShortDateString();
-            //            }
-            //            else
-            //            {
-            //                item.ReceivedDate = null;
-            //            }
-            //        }
+            var Certificates = db.Certificates.ToList();
+            foreach (var item in ListModel)
+            {
+                foreach (var c in Certificates)
+                {
+                    var rs = c.CheckCertificate(item.UserId, item.BatchId);
+                    if (rs)
+                    {
+                        item.IsCertificate = rs;
+                        if (c.Status == Certificate.CertificateStatus.PENDING)
+                        {
+                            item.ReceivedDate = c.ReceivedDate.ToShortDateString();
+                        }
+                        else
+                        {
+                            item.ReceivedDate = null;
+                        }
+                    }
 
-            //    }
-            //}
-            //return View(ListModel);
-            return View();
+                }
+            }
+            return View(ListModel);
         }
 
         //
