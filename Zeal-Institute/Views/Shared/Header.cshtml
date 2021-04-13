@@ -35,6 +35,10 @@
                     </li>
                     <li><a href="/home/event">Events</a></li>
                     <li><a href="/home/contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/Manage">Certificate</a></li>
+                    }
                 </ul>
                 @if (Request.IsAuthenticated)
                 {
@@ -42,7 +46,7 @@
                     {
                         @Html.AntiForgeryToken()
                         <span style="margin-bottom:7px;display:inline-block">
-                            @Html.ActionLink("Hi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            @Html.ActionLink("Hi " + Request.Cookies["UserName"].Value + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                         </span>
                         <span>
                             <a href="javascript:document.getElementById('logoutForm').submit()" class="register-modal-opener login-button"><i class="material-icons">perm_identity</i>Log Out</a>

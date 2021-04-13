@@ -31,6 +31,7 @@ namespace Zeal_Institute.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
+        public string IntroCourse { get; set; }
         public CourseStatus Status { get; set; }
 
         public enum CourseStatus

@@ -117,18 +117,18 @@
                     <div class="col-sm-12 mb-12">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h1><strong>Đăng Ký Chứng Chỉ Các Khóa Học</strong></h1>
+                                <h1><strong>Registration for certification courses</strong></h1>
                                 <table id="mytable" class="table table-bordred table-striped align-items-center">
 
                                     <thead>
 
-                                    <th>STT</th>
-                                    <th>Lớp Học</th>
-                                    <th>Khóa Học</th>
-                                    <th>Điểm</th>
-                                    <th>Ngày Nhận</th>
+                                    <th>#</th>
+                                    <th>Batch</th>
+                                    <th>Course</th>
+                                    <th>Mark</th>
+                                    <th>Receiver Date</th>
 
-                                    <th>Thao Tác</th>
+                                    <th>Action</th>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
@@ -137,22 +137,15 @@
                                                 <td>@item.BatchName</td>
                                                 <td>@item.CourseName</td>
                                                 <td>@item.Mark %</td>
-                                                @if (item.ReceivedDate == null)
-                                                {
-                                                    <td>chờ xét duyệt</td>
-                                                }
-                                                else
-                                                {
+                                                <td>@item.ReceivedDate</td>
 
-                                                    <td>@item.ReceivedDate</td>
-                                                }
                                                 @if (item.IsCertificate == false)
                                                 {
-                                                    <td><button class="btn btn-primary registration" role="button" data-userid="@item.UserId" data-batchid="@item.BatchId">Đăng Ký</button></td>
+                                                    <td><button class="btn btn-primary registration" role="button" data-userid="@item.UserId" data-batchid="@item.BatchId">registration</button></td>
                                                 }
                                                 else
                                                 {
-                                                    <td><button type="button" class="btn btn-primary disabled">Đã Đăng Ký</button></td>
+                                                    <td><button type="button" class="btn btn-primary disabled">Registered</button></td>
                                                 }
                                             </tr>
                                         }
@@ -256,7 +249,7 @@
                 <h1>Changed Password Successfully!</h1>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="btn-close" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -308,14 +301,22 @@
                         success: function (data) {
                             if (data.code == 200) {
                                 $('#registrationmodel').modal('toggle');
-
+                                $('#alertChangePwd h1').html("Registration Sucessfully !!");
+                                $('#alertChangePwd').modal();
+                                $(document).on('blur', '#alertChangePwd', function () {
+                                    location.reload();
+                                })
                             }
-                            location.reload();
+                            
                         }
                     });
                 });
 
             })
+
+            $('#btn-close').click(function () {
+                location.reload();
+            });
 
             $(document).on('click', '#btn-changePwd', function () {
                 var validation = $("form[name=changePw]").valid();
@@ -328,17 +329,25 @@
                         method: "POST",
                         data: { oldPwd: oldPwd, newPwd: newPwd },
                         dataType: "json",
-                        
-                        success: function(data) {
+
+                        success: function (data) {
                             if (data.code == 200) {
                                 $('#OldPwd').val("");
                                 $('#NewPwd').val("");
                                 $('#ConfirmPwd').val("");
                                 $('#changePwdModal').modal('toggle');
+                                $('#alertChangePwd h1').html("Changed Password Successfully!");
+                                $('#alertChangePwd').modal();
+                            } else if (data.code == 500) {
+                                $('#OldPwd').val("");
+                                $('#NewPwd').val("");
+                                $('#ConfirmPwd').val("");
+                                $('#changePwdModal').modal('toggle');
+                                $('#alertChangePwd h1').html("Changed password fail !!");
                                 $('#alertChangePwd').modal();
                             }
                         },
-                       
+
                         error: function (data) {
                             alert("Changed password fail !!")
                         }

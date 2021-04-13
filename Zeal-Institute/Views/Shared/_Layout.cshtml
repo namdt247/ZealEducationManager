@@ -222,7 +222,9 @@
                             } else {
                                 $('input[name="txtEmail"]').val("");
                                 $('input[name="txtPassword"]').val("");
-                                window.location.href = "@Url.Action("Index", "Home")";
+                                $('#loginModal').modal('toggle');
+                                $('#alert h4').html("Account or password is incorrect !!");
+                                $('#alert').modal();
                             }
                         },
                         error: function () {

@@ -746,7 +746,7 @@
                     <div class="course-content-holder">
                         <div class="course-content-main">
                             <h2 class="course-title">
-                                <a>@Model.ElementAt(i).Description</a>
+                                <a href="@Url.Action("Detail", "Course", new {id = @Model.ElementAt(i).Id })">@Model.ElementAt(i).Description</a>
                             </h2>
                             <div class="course-rating-teacher">
                                 <div class="star-rating has-ratings" title="Rated 5.00 out of 5">
@@ -975,7 +975,7 @@
     </div>
 </div>
 
-<!--medal alert-->
+<!--modal alert-->
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -989,11 +989,11 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-title text-center">
-                                <h4>Gửi Feedback Thành Công !</h4>
+                                <h4>Send Feedback Successfully !!</h4>
                             </div>
                             <br />
                             <div class="d-flex flex-column text-center">
-                                 <a href="" class="btn btn-outline-primary" data-dismiss="modal">Cancel</a> 
+                                 <a href="" class="btn btn-outline-primary" data-dismiss="modal">OK !</a> 
                             </div>
                         </div>
                     </div>
@@ -1079,15 +1079,15 @@
                         data: { email: email, name: name, phone: phone, type: type, content: content },
                         success: function (data) {
                             if (data.code == 200) {
-                                email = $('#txtEmail').val("");
+                                email = $('#txtEmailFb').val("");
                                 name = $('#txtName').val("");
                                 phone = $('#txtPhone').val("");
                                 type = $('#feedbackType').val("");
                                 content = $('#txtContent').val("");
                                 $('#myModal').modal('toggle');
+                                $('#alert h4').html("Send Feedback Successfully !!");
                                 $('#alert').modal();
 
-                                console.log(data)
                             }
                         }
                     });
