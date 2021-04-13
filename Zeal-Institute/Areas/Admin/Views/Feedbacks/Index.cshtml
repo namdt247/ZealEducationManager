@@ -63,7 +63,7 @@
                     <a href="@Url.Action("Delete", "Feedbacks", new { id = item.Id })" class="text-danger pe-4"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
-            }
+                }
         </tbody>
     </table>
 </div>
@@ -72,6 +72,21 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#table_id').DataTable();
+            //$('#filterStatus').on('change', function () {
+            //    var val = $(this).val();
+            //    $.ajax({
+            //        url: "/Admin/Feedbacks/Index",
+            //        method: "POST",
+            //        contentType: "application/json",
+            //        //traditional: true,
+            //        data: JSON.stringify(val),
+            //        success: function (data) {
+            //            if (data) {
+                            
+            //            }
+            //        }
+            //    });
+            //});
         });
     </script>
 }

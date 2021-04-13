@@ -18,6 +18,7 @@
 
 <div class="card shadow-sm table-wrapper table-responsive mb-3">
     <div class="dl-horizontal">
+        @Html.HiddenFor(model => model.Id, new { id = "idEdit" })
         <div class="row m-0 py-3 px-4">
             <div class="col-sm-4 col-md-4">
                 <div>
@@ -148,17 +149,18 @@
                         $.ajax({
                             url: "/Admin/Exams/UpdateExamDetails",
                             method: "POST",
-                            dataType: "json",
-                            traditional: true,
-                            data: { dataExam: JSON.stringify(arrUpdate) },
-                            success: function (result, status, xhr) {
-                                if (result) {
+                            contentType: "application/json",
+                            //traditional: true,
+                            data: JSON.stringify(arrUpdate),
+                            success: function (data) {
+                                if (data) {
                                     alert("Update Success");
                                     $('#saveExamDetail').addClass('d-none');
                                     $('#cancelExamDetail').addClass('d-none');
                                     $('.mark_text').removeClass('d-none');
                                     $('.mark').addClass('d-none');
                                     $('#editExamDetail').removeClass('d-none');
+                                    location.reload();
                                 } else {
                                     alert("Update Fail");
                                 }
