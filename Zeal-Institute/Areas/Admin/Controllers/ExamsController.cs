@@ -156,6 +156,12 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                     var objExamDetail = new ExamDetail() { ExamId = item.ExamId, ApplicationUserId = item.ApplicationUserId, Mark = item.Mark, Note = "" };
                     db.Entry(objExamDetail).State = EntityState.Modified;
                 }
+                //Exam findExam = db.Exams.Find(idExam);
+                //if (findExam.Status != "DONE")
+                //{
+                //    findExam.Status = Exam.ExamStatus.DONE;
+                //    db.Entry(findExam).State = EntityState.Modified;
+                //}
                 db.SaveChanges();
                 ViewData["ListExamStudent"] = exam;
                 return Json(new { result = exam }, JsonRequestBehavior.AllowGet);
