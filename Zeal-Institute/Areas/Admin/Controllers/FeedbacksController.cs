@@ -17,7 +17,12 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // GET: Admin/Feedbacks
         public ActionResult Index()
         {
-            return View(db.Feedbacks.ToList());
+            var listFeedback = db.Feedbacks
+                .Where(x => x.Status != Feedback.FeedbackStatus.DELETED)
+                .OrderByDescending(x => x.Id)
+                .ToList()
+                ;
+            return View(listFeedback);
         }
         // GET: Admin/Feedbacks/Details/5
         public ActionResult Details(int? id)

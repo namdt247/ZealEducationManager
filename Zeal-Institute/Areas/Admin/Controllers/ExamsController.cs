@@ -18,7 +18,10 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // GET: Admin/Exams
         public ActionResult Index()
         {
-            var exams = db.Exams.Include(e => e.Batch);
+            var exams = db.Exams
+                .OrderByDescending(x => x.DateExam)
+                .Include(e => e.Batch)
+                ;
             return View(exams.ToList());
         }
 

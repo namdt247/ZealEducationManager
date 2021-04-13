@@ -22,7 +22,11 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // GET: Admin/Batches
         public ActionResult Index()
         {
-            var batches = db.Batches.Include(b => b.Course);
+            var batches = db.Batches
+                .Where(x => x.Status != Batch.BatchStatus.DELETED)
+                .Include(b => b.Course)
+                .OrderByDescending(x => x.Id)
+                ;
             return View(batches.ToList());
         }
 

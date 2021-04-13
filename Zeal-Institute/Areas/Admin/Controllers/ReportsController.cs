@@ -19,45 +19,71 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // Reports financial
         public ActionResult ListFee()
         {
-            var ListFee = db.Payments.Where(x => x.Type == Payment.PaymentType.FEE).ToList();
+            var ListFee = db.Payments
+                .Where(x => x.Type == Payment.PaymentType.FEE)
+                .Where(x => x.Status != Payment.PaymentStatus.DELETED)
+                .OrderByDescending(x => x.PayDate)
+                .ToList();
             return View(ListFee);
         }
 
         public ActionResult ListFine()
         {
-            var ListFine = db.Payments.Where(x => x.Type == Payment.PaymentType.FINE).ToList();
+            var ListFine = db.Payments
+                .Where(x => x.Type == Payment.PaymentType.FINE)
+                .Where(x => x.Status != Payment.PaymentStatus.DELETED)
+                .OrderByDescending(x => x.PayDate)
+                .ToList();
             return View(ListFine);
         }
 
         public ActionResult ListOutstanding()
         {
-            var ListOutstanding = db.Payments.Where(x => x.AmountPaid < x.AmountPayable).ToList();
+            var ListOutstanding = db.Payments
+                .Where(x => x.AmountPaid < x.AmountPayable)
+                .Where(x => x.Status != Payment.PaymentStatus.DELETED)
+                .OrderByDescending(x => x.Id)
+                .ToList();
             return View(ListOutstanding);
         }
 
         public ActionResult ListReminder()
         {
-            var ListReminder = db.Reminders.ToList();
+            var ListReminder = db.Reminders
+                .Where(x => x.Status != Reminder.ReminderStatus.DELETED)
+                .OrderByDescending(x => x.Id)
+                .ToList();
             return View(ListReminder);
         }
 
         // Reports batch
         public ActionResult EndBatches()
         {
-            var ListEndBatches = db.Batches.Where(x => x.DateEnd < DateTime.Now).ToList();
+            var ListEndBatches = db.Batches
+                .Where(x => x.DateEnd < DateTime.Now)
+                .Where(x => x.Status != Batch.BatchStatus.DELETED)
+                .OrderByDescending(x => x.DateEnd)
+                .ToList();
             return View(ListEndBatches);
         }
 
         public ActionResult StartBatches()
         {
-            var ListStartBatches = db.Batches.Where(x => x.DateEnd >= DateTime.Now).ToList();
+            var ListStartBatches = db.Batches
+                .Where(x => x.DateEnd >= DateTime.Now)
+                .Where(x => x.Status != Batch.BatchStatus.DELETED)
+                .OrderByDescending(x => x.DateStart)
+                .ToList();
             return View(ListStartBatches);
         }
 
         // Reports student
         public ActionResult ListDiscount()
         {
-            var ListDiscount = db.Discounts.ToList();
+            var ListDiscount = db.Discounts
+                .Where(x => x.Status != Discount.DiscountStatus.DELETED)
+                .OrderByDescending(x => x.Id)
+                .ToList();
             return View(ListDiscount);
         }
 
@@ -65,13 +91,21 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
             var role = roleManager.FindByName("Student").Users.First();
-            var ListStudent = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+            var ListStudent = db.Users
+                .Where(u => u.Roles.Select(r => r.RoleId)
+                .Contains(role.RoleId))
+                .Where(x => x.Status != ApplicationUser.UserStatus.DELETED)
+                .OrderByDescending(x => x.CreatedAt)
+                .ToList();
             return View(ListStudent);
         }
 
         public ActionResult ListCertificate()
         {
-            var ListCertificate = db.Certificates.OrderByDescending(x => x.RegistrationDate).ToList();
+            var ListCertificate = db.Certificates
+                .Where(x => x.Status != Certificate.CertificateStatus.DELETED)
+                .OrderByDescending(x => x.RegistrationDate)
+                .ToList();
             return View(ListCertificate);
         }
         // GET: Admin/Reports/DetailsCertificate/1
