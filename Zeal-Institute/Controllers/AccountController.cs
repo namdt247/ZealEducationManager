@@ -71,22 +71,18 @@ namespace Zeal_Institute.Controllers
             {
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(email, password, true, shouldLockout: false);
-            switch (result)
+
+            var user = await UserManager.FindAsync(email, password);
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
-                case SignInStatus.LockedOut:
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
-                case SignInStatus.RequiresVerification:
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
-                case SignInStatus.Failure:
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+                Response.Cookies["UserName"].Value = user.FullName;
+                var ident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, ident);
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -390,6 +386,7 @@ namespace Zeal_Institute.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session.Abandon();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

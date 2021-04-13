@@ -98,17 +98,28 @@ namespace Zeal_Institute.Controllers
                 foreach (var c in Certificates)
                 {
                     var rs = c.CheckCertificate(item.UserId, item.BatchId);
+
                     if (rs)
                     {
                         item.IsCertificate = rs;
                         if (c.Status == Certificate.CertificateStatus.PENDING)
                         {
-                            item.ReceivedDate = c.ReceivedDate.ToShortDateString();
+                            item.ReceivedDate = "Reviewing";
                         }
-                        else
+                        else if (c.Status == Certificate.CertificateStatus.DELETED)
                         {
                             item.ReceivedDate = null;
                         }
+                        else
+                        {
+                            item.ReceivedDate = c.ReceivedDate.ToShortDateString();
+                        }
+                        break;
+
+                    }
+                    else
+                    {
+                        item.ReceivedDate = "--/--/--";
                     }
 
                 }

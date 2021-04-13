@@ -15,6 +15,7 @@ using Zeal_Institute.Models;
 
 namespace Zeal_Institute.Areas.Admin.Controllers
 {
+   
     public class HomeController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -65,6 +66,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Home
+        [Authorizee(Roles = "Admin")]
         public ActionResult Index()
         {
             var role = roleManager.FindByName("Student").Users.First();
@@ -124,6 +126,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorizee(Roles = "Admin")]
         public string StudentData(DateTime start, DateTime end)
         {
             var role = roleManager.FindByName("Student").Users.First();
@@ -142,6 +145,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return data;
         }
 
+        [Authorizee(Roles = "Admin")]
         public string FinancialData(DateTime start, DateTime end)
         {
             var startDate = start != null ? start : DateTime.Now.AddDays(-29);
@@ -158,13 +162,19 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return data;
         }
 
+        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("AlertError", "Home");
             }
             ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        public ActionResult AlertError()
+        {
             return View();
         }
 
@@ -178,22 +188,17 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            
-            switch (result)
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                Response.Cookies["UserName"].Value = user.FullName;
+                var ident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, ident);
+                return RedirectToLocal(returnUrl);
+            }
+            else
+            {
+                return View(model);
             }
         }
 
