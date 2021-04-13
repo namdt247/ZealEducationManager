@@ -18,6 +18,7 @@
 
 <div class="card shadow-sm table-wrapper table-responsive mb-3">
     <div class="dl-horizontal">
+        @Html.HiddenFor(model => model.Id, new { id = "idEdit" })
         <div class="row m-0 py-3 px-4">
             <div class="col-sm-4 col-md-4">
                 <div>
@@ -122,7 +123,6 @@
                 var checkNull = true;
                 var checkUndefined = true;
                 $('.mark').each(function (index) {
-                    console.log($(this).find('input').attr("data-ExamId"))
                     var obj = {
                         ExamId: parseInt($(this).find('input').attr("data-ExamId")),
                         ApplicationUserId: $(this).find('input').attr("data-ApplicationUserId"),
@@ -138,7 +138,6 @@
                     }
                     arrUpdate.push(obj);
                 });
-                console.log(arrUpdate)
                 if (!checkNull) {
                     alert("Enter mark");
                     return false;
@@ -150,17 +149,18 @@
                         $.ajax({
                             url: "/Admin/Exams/UpdateExamDetails",
                             method: "POST",
-                            dataType: "json",
-                            data: { dataExam: arrUpdate },
-                            success: function (result, status, xhr) {
-                                console.log(result)
-                                if (result) {
+                            contentType: "application/json",
+                            //traditional: true,
+                            data: JSON.stringify(arrUpdate),
+                            success: function (data) {
+                                if (data) {
                                     alert("Update Success");
                                     $('#saveExamDetail').addClass('d-none');
                                     $('#cancelExamDetail').addClass('d-none');
                                     $('.mark_text').removeClass('d-none');
                                     $('.mark').addClass('d-none');
                                     $('#editExamDetail').removeClass('d-none');
+                                    location.reload();
                                 } else {
                                     alert("Update Fail");
                                 }

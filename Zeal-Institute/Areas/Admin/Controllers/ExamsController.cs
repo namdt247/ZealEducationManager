@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Zeal_Institute.Models;
 
 namespace Zeal_Institute.Areas.Admin.Controllers
@@ -146,28 +147,26 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             base.Dispose(disposing);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UpdateExamDetails(Array exam)
+        public ActionResult UpdateExamDetails(List<ExamDetail> exam)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (exam.Length > 0)
+                foreach (var item in exam)
                 {
-                    for (int i = 0; i < exam.Length; i++)
-                    {
-                        
-                    }
-                    
-
-                } else
-                {
-                    return View(exam);
+                    var objExamDetail = new ExamDetail() { ExamId = item.ExamId, ApplicationUserId = item.ApplicationUserId, Mark = item.Mark, Note = "" };
+                    db.Entry(objExamDetail).State = EntityState.Modified;
                 }
-                db.Entry(exam).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewData["ListExamStudent"] = exam;
+                return Json(new { result = exam }, JsonRequestBehavior.AllowGet);
             }
-            return View(exam);
+            catch (Exception)
+            {
+
+                return Json(new { list = "not" }, JsonRequestBehavior.AllowGet);
+            }
+            
+            
         }
     }
 }

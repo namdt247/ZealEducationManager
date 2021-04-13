@@ -24,7 +24,6 @@ namespace Zeal_Institute.Areas.Admin.Controllers
                 ;
             return View(listFeedback);
         }
-
         // GET: Admin/Feedbacks/Details/5
         public ActionResult Details(int? id)
         {
