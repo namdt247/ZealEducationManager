@@ -17,7 +17,12 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // GET: Admin/Courses
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            var listCourse = db.Courses
+                .Where(x => x.Status != Course.CourseStatus.DELETED)
+                .OrderByDescending(x => x.Id)
+                .ToList()
+                ;
+            return View(listCourse);
         }
 
         // GET: Admin/Courses/Details/5

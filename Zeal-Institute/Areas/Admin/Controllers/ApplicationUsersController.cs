@@ -22,7 +22,12 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var role = roleManager.FindByName("Student").Users.First();
-            var usersInRole = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+            var usersInRole = db.Users
+                .Where(u => u.Roles.Select(r => r.RoleId)
+                .Contains(role.RoleId))
+                .Where(x => x.Status != ApplicationUser.UserStatus.DELETED)
+                .OrderByDescending(x => x.CreatedAt)
+                .ToList();
             return View(usersInRole);
         }
 
@@ -151,7 +156,12 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         public ActionResult ListFaculty()
         {
             var role = roleManager.FindByName("Faculty").Users.First();
-            var usersInRole = db.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+            var usersInRole = db.Users
+                .Where(u => u.Roles.Select(r => r.RoleId)
+                .Contains(role.RoleId))
+                .Where(x => x.Status != ApplicationUser.UserStatus.DELETED)
+                .OrderByDescending(x => x.CreatedAt)
+                .ToList();
             return View(usersInRole);
         }
     }
