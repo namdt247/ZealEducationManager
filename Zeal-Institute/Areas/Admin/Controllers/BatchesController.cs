@@ -125,16 +125,20 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Batches/Delete/5
-        [HttpPost]
+        [HttpGet]
         [Authorizee(Roles = "Admin")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Batch btc = db.Batches.Find(id);
             if (btc == null)
             {
                 return HttpNotFound();
             }
-            db.Batches.Remove(btc);
+            btc.Status = Batch.BatchStatus.DELETED;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

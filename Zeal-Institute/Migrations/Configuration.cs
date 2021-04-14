@@ -203,9 +203,9 @@ namespace Zeal_Institute.Migrations
             UserManager.AddToRole("29", "Student");
             UserManager.AddToRole("30", "Student");
 
-            UserManager.AddToRole("31", "Student");
-            UserManager.AddToRole("32", "Student");
-            UserManager.AddToRole("33", "Student");
+            UserManager.AddToRole("31", "Faculty");
+            UserManager.AddToRole("32", "Faculty");
+            UserManager.AddToRole("33", "Faculty");
             UserManager.AddToRole("34", "Student");
             UserManager.AddToRole("35", "Student");
             UserManager.AddToRole("36", "Student");
@@ -214,9 +214,9 @@ namespace Zeal_Institute.Migrations
             UserManager.AddToRole("39", "Student");
             UserManager.AddToRole("40", "Student");
 
-            UserManager.AddToRole("41", "Student");
-            UserManager.AddToRole("42", "Student");
-            UserManager.AddToRole("43", "Student");
+            UserManager.AddToRole("41", "Faculty");
+            UserManager.AddToRole("42", "Faculty");
+            UserManager.AddToRole("43", "Faculty");
             UserManager.AddToRole("44", "Student");
             UserManager.AddToRole("45", "Student");
             UserManager.AddToRole("46", "Student");
@@ -233,8 +233,8 @@ namespace Zeal_Institute.Migrations
             UserManager.AddToRole("57", "Student");
             UserManager.AddToRole("58", "Student");
             UserManager.AddToRole("59", "Student");
-            UserManager.AddToRole("60", "Student");
-            UserManager.AddToRole("61", "Student");
+            UserManager.AddToRole("60", "Faculty");
+            UserManager.AddToRole("61", "Faculty");
             UserManager.AddToRole("62", "Student");
             UserManager.AddToRole("63", "Student");
             UserManager.AddToRole("64", "Student");

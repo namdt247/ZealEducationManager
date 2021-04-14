@@ -213,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\Admin\css\volt.css" />
+    <Content Include="Asset\Admin\js\admin.js" />
     <Content Include="Asset\Admin\js\volt.js" />
     <Content Include="Asset\Admin\vendor\bootstrap\dist\css\bootstrap-grid.min.css" />
     <Content Include="Asset\Admin\vendor\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />

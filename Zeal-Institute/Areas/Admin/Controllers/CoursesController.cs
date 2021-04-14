@@ -113,7 +113,9 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(course);
+            course.Status = Course.CourseStatus.DELETED;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Admin/Courses/Delete/5

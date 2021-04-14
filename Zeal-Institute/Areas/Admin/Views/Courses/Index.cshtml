@@ -45,7 +45,7 @@
                     </td>
                     <td class="text-right">
                         <a href="@Url.Action("Edit", "Courses", new { id = item.Id })" class="me-4 text-warning"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="@Url.Action("Delete", "Courses", new { id = item.Id })" class="text-danger pe-4"><i class="fa fa-trash"></i></a>
+                        <a href="@Url.Action("Delete", "Courses", new { id = item.Id })" id="btnDeleteCourse" class="text-danger pe-4"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             }

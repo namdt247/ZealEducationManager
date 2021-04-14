@@ -137,7 +137,26 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            applicationUser.Status = ApplicationUser.UserStatus.DELETED;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [Authorizee(Roles = "Admin")]
+        public ActionResult DeleteFaculty(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
+            {
+                return HttpNotFound();
+            }
+            applicationUser.Status = ApplicationUser.UserStatus.DELETED;
+            db.SaveChanges();
+            return RedirectToAction("ListFaculty");
         }
 
         // POST: Admin/ApplicationUsers/Delete/5
