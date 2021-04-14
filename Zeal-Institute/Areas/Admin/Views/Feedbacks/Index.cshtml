@@ -4,10 +4,67 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var count = 0;
+
+    var listType = new List<Zeal_Institute.Models.Feedback>();
+    listType.Add(new Zeal_Institute.Models.Feedback()
+    {
+        Id = 0,
+        Type = Zeal_Institute.Models.Feedback.FeedbackType.REGISTER,
+    });
+    listType.Add(new Zeal_Institute.Models.Feedback()
+    {
+        Id = 1,
+        Type = Zeal_Institute.Models.Feedback.FeedbackType.DETAIL,
+    });
+    listType.Add(new Zeal_Institute.Models.Feedback()
+    {
+        Id = 2,
+        Type = Zeal_Institute.Models.Feedback.FeedbackType.ORTHER,
+    });
+    var defaultOption = "---Select type---";
+    var selectList = new SelectList(listType, "Id", "Type");
+
+    var listStatus = new List<Zeal_Institute.Models.Feedback>();
+    listStatus.Add(new Zeal_Institute.Models.Feedback()
+    {
+        Id = 0,
+        Status = Zeal_Institute.Models.Feedback.FeedbackStatus.PENDING,
+    });
+    listStatus.Add(new Zeal_Institute.Models.Feedback()
+    {
+        Id = 1,
+        Status = Zeal_Institute.Models.Feedback.FeedbackStatus.DONE,
+    });
+    var defaultOption2 = "---Select status---";
+    var selectList2 = new SelectList(listStatus, "Id", "Status");
+
 }
 
 <h4 class="py-3">List feedbacks</h4>
 
+
+@using (Html.BeginForm("Index", "Feedbacks", FormMethod.Get))
+{
+<div class="row mb-3">
+    <div class="col-1">
+        @Html.Label("Type"):
+    </div>
+    <div class="col-3">
+        @Html.DropDownList("Type", selectList, defaultOption, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-1">
+        @Html.Label("Status"):
+    </div>
+    <div class="col-3">
+        @Html.DropDownList("Status", selectList2, defaultOption2, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-2">
+        <input type="submit" value="Search" class="btn btn-gray-300"/>
+    </div>
+</div>
+
+}
+  
 <div class="card shadow-sm table-wrapper table-responsive">
     <table class="display table table-flush" id="table_id">
         <thead class="thead-light">

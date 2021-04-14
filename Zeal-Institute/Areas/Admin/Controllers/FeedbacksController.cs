@@ -16,13 +16,52 @@ namespace Zeal_Institute.Areas.Admin.Controllers
 
         // GET: Admin/Feedbacks
         [Authorizee(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult Index(int? type, int? status)
         {
-            var listFeedback = db.Feedbacks
+            var listFeedback = new List<Feedback>();
+            if (type == null && status == null)
+            {
+                listFeedback = db.Feedbacks
                 .Where(x => x.Status != Feedback.FeedbackStatus.DELETED)
                 .OrderByDescending(x => x.Id)
                 .ToList()
                 ;
+            }
+            else
+            {
+                if (type != null && status != null)
+                {
+                    listFeedback = db.Feedbacks
+                        .Where(x => x.Status != Feedback.FeedbackStatus.DELETED)
+                        .Where(x => x.Status == (Feedback.FeedbackStatus)status)
+                        .Where(x => x.Type == (Feedback.FeedbackType)type)
+                        .OrderByDescending(x => x.Id)
+                        .ToList()
+                        ;
+                } else
+                {
+                    if (status != null)
+                    {
+                        listFeedback = db.Feedbacks
+                           .Where(x => x.Status != Feedback.FeedbackStatus.DELETED)
+                           .Where(x => x.Status == (Feedback.FeedbackStatus)status)
+                           .OrderByDescending(x => x.Id)
+                           .ToList()
+                           ;
+                    }
+                    if (type != null)
+                    {
+                        listFeedback = db.Feedbacks
+                           .Where(x => x.Status != Feedback.FeedbackStatus.DELETED)
+                           .Where(x => x.Type == (Feedback.FeedbackType)type)
+                           .OrderByDescending(x => x.Id)
+                           .ToList()
+                           ;
+                    }
+                }
+                
+            }
+            
             return View(listFeedback);
         }
         // GET: Admin/Feedbacks/Details/5

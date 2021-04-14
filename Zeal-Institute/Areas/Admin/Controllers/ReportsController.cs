@@ -109,12 +109,25 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         [Authorizee(Roles = "Admin")]
-        public ActionResult ListCertificate()
+        public ActionResult ListCertificate(int? Status)
         {
-            var ListCertificate = db.Certificates
-                .Where(x => x.Status != Certificate.CertificateStatus.DELETED)
-                .OrderByDescending(x => x.RegistrationDate)
-                .ToList();
+            var ListCertificate = new List<Certificate>();
+            if (Status == null)
+            {
+                ListCertificate = db.Certificates
+                    .Where(x => x.Status != Certificate.CertificateStatus.DELETED)
+                    .OrderByDescending(x => x.RegistrationDate)
+                    .ToList();
+            }
+            else
+            {
+                ListCertificate = db.Certificates
+                    .Where(x => x.Status != Certificate.CertificateStatus.DELETED)
+                    .Where(x => x.Status == (Certificate.CertificateStatus)Status)
+                    .OrderByDescending(x => x.RegistrationDate)
+                    .ToList();
+            }
+            
             return View(ListCertificate);
         }
         // GET: Admin/Reports/DetailsCertificate/1

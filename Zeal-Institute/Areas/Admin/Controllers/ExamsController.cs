@@ -17,13 +17,28 @@ namespace Zeal_Institute.Areas.Admin.Controllers
 
         // GET: Admin/Exams
         [Authorizee(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult Index(int? Status)
         {
-            var exams = db.Exams
-                .OrderByDescending(x => x.DateExam)
-                .Include(e => e.Batch)
-                ;
-            return View(exams.ToList());
+            var exams = new List<Exam>();
+            if (Status == null)
+            {
+                exams = db.Exams
+                    .OrderByDescending(x => x.DateExam)
+                    .Include(e => e.Batch)
+                    .ToList()
+                    ;
+            } 
+            else
+            {
+                exams = db.Exams
+                    .Where(x => x.Status == (Exam.ExamStatus)Status)
+                    .OrderByDescending(x => x.DateExam)
+                    .Include(e => e.Batch)
+                    .ToList()
+                    ;
+            }
+            
+            return View(exams);
         }
 
         // GET: Admin/Exams/Details/5

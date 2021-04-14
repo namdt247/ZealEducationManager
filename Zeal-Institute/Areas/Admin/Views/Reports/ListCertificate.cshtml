@@ -4,9 +4,40 @@
     ViewBag.Title = "ListCertificate";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var count = 0;
+
+    var listStatus = new List<Zeal_Institute.Models.Certificate>();
+    listStatus.Add(new Zeal_Institute.Models.Certificate()
+    {
+        Id = 0,
+        Status = Zeal_Institute.Models.Certificate.CertificateStatus.PENDING,
+    });
+    listStatus.Add(new Zeal_Institute.Models.Certificate()
+    {
+        Id = 1,
+        Status = Zeal_Institute.Models.Certificate.CertificateStatus.DONE,
+    });
+    var defaultOption = "---Select status---";
+    var selectList = new SelectList(listStatus, "Id", "Status");
 }
 
 <h4 class="py-3">List Certificates</h4>
+
+@using (Html.BeginForm("ListCertificate", "Reports", FormMethod.Get))
+{
+    <div class="row my-3">
+        <div class="col-1">
+            @Html.Label("Status"):
+        </div>
+        <div class="col-3">
+            @Html.DropDownList("Status", selectList, defaultOption, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-2">
+            <input type="submit" value="Search" class="btn btn-gray-300" />
+        </div>
+    </div>
+
+}
+
 
 <div class="card shadow-sm table-wrapper table-responsive mb-3">
     <table class="display table table-flush" id="table_id">
