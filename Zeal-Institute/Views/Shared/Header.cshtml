@@ -46,7 +46,11 @@
                     {
                         @Html.AntiForgeryToken()
                         <span style="margin-bottom:7px;display:inline-block">
-                            @Html.ActionLink("Hi " + Request.Cookies["UserName"].Value + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            @if (Request.Cookies["UserName"] != null)
+                            {
+                                @Html.ActionLink("Hi " + Request.Cookies["UserName"].Value + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+                            }
                         </span>
                         <span>
                             <a href="javascript:document.getElementById('logoutForm').submit()" class="register-modal-opener login-button"><i class="material-icons">perm_identity</i>Log Out</a>

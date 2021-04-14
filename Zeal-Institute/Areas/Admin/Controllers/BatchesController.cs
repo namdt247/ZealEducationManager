@@ -20,6 +20,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         private RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
         // GET: Admin/Batches
+        [Authorizee(Roles = "Admin")]
         public ActionResult Index()
         {
             var batches = db.Batches.Include(b => b.Course);
@@ -27,6 +28,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Batches/Details/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +45,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Batches/Create
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
@@ -54,6 +57,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Name,Code,CourseId,ListStudent,Description,DateStart,DateEnd,Status")] Batch batch)
         {
             Debug.WriteLine(batch);
@@ -74,6 +78,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Batches/Edit/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +103,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,Code,CourseId,ListStudent,Description,DateStart,DateEnd,Status")] Batch batch)
         {
             if (ModelState.IsValid)
@@ -112,6 +118,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
 
         // GET: Admin/Batches/Delete/5
         [HttpPost]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Batch btc = db.Batches.Find(id);
@@ -156,6 +163,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+        [Authorizee(Roles = "Admin")]
         public JsonResult GetListIdStudent(int id)
         {
             var listStudent = new List<string>();
@@ -172,6 +180,8 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return Json(listStudent, JsonRequestBehavior.AllowGet);
 
         }
+
+        [Authorizee(Roles = "Admin")]
         public JsonResult GetListStudentSelect(string searchTerm)
         {
             var role = roleManager.FindByName("Student").Users.First();
@@ -189,6 +199,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
         [HttpPost]
         // add student
+        [Authorizee(Roles = "Admin")]
         public JsonResult PostStudent(string id)
         {
             ApplicationUser btc = db.Users.Find(id);
