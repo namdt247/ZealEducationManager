@@ -82,7 +82,7 @@
             var listStudent = [];
             $('#liststudent').select2({
                 placeholder: "Student",
-                //multiple: true,
+                closeOnSelect: false,
                 ajax: {
                     url: "/Admin/Batches/GetListStudentSelect",
                     dataType: "json",

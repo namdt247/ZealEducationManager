@@ -60,14 +60,13 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Code,CourseId,ListStudent,Description,DateStart,DateEnd,Status")] Batch batch)
         {
-            Debug.WriteLine(batch);
             if (ModelState.IsValid)
             {
-                //if (batch.ListStudent.Length > 0)
-                //{
-                //    string ids = String.Join(",", batch.ListStudent);
-                //    batch.ListStudent = ids;
-                //}
+                if (batch.ListStudent.Length > 0)
+                {
+                    string ids = batch.ListStudent + ",";
+                    batch.ListStudent = ids;
+                }
                 db.Batches.Add(batch);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -106,6 +105,11 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (batch.ListStudent.Length > 0)
+                {
+                    string ids = batch.ListStudent + ",";
+                    batch.ListStudent = ids;
+                }
                 db.Entry(batch).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -115,18 +119,18 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Batches/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {
-            Batch btc = db.Batches.Find(id);
-            if (btc == null)
-            {
-                return HttpNotFound();
-            }
-            db.Batches.Remove(btc);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //public ActionResult Delete(int id)
+        //{
+        //    Batch btc = db.Batches.Find(id);
+        //    if (btc == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    db.Batches.Remove(btc);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
         //public ActionResult Delete(int? id)
         //{
         //    if (id == null)
@@ -141,7 +145,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         //    return View(batch);
         //}
 
-        //// POST: Admin/Batches/Delete/5
+        // POST: Admin/Batches/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public ActionResult DeleteConfirmed(int id)
