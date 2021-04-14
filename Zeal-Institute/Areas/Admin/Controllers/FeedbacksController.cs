@@ -15,6 +15,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Feedbacks
+        [Authorizee(Roles = "Admin")]
         public ActionResult Index()
         {
             var listFeedback = db.Feedbacks
@@ -25,6 +26,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(listFeedback);
         }
         // GET: Admin/Feedbacks/Details/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,6 +42,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Feedbacks/Create
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +53,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,FbEmail,FbPhone,FbName,Type,Content,Note,Status")] Feedback feedback)
         {
             if (ModelState.IsValid)
@@ -63,6 +67,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Feedbacks/Edit/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +87,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,FbEmail,FbPhone,FbName,Type,Content,Note,Status")] Feedback feedback)
         {
             if (ModelState.IsValid)
@@ -95,6 +101,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Feedbacks/Delete/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +119,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // POST: Admin/Feedbacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Feedback feedback = db.Feedbacks.Find(id);

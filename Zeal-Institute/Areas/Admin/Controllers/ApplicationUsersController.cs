@@ -19,6 +19,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         private RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
         // GET: Admin/ApplicationUsers
+        [Authorizee(Roles = "Admin")]
         public ActionResult Index()
         {
             var role = roleManager.FindByName("Student").Users.First();
@@ -32,6 +33,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/ApplicationUsers/Details/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -47,6 +49,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/ApplicationUsers/Create
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -57,6 +60,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,FullName,RollNumber,Address,Avatar,Description,CreatedAt,Status,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             var passwordHash = new PasswordHasher();
@@ -88,6 +92,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/ApplicationUsers/Edit/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -107,6 +112,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,FullName,RollNumber,Address,Avatar,Description,CreatedAt,Status,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
@@ -119,6 +125,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/ApplicationUsers/Delete/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -136,6 +143,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // POST: Admin/ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             ApplicationUser applicationUser = db.Users.Find(id);
@@ -153,6 +161,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             base.Dispose(disposing);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListFaculty()
         {
             var role = roleManager.FindByName("Faculty").Users.First();

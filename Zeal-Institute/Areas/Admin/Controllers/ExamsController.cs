@@ -16,6 +16,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Exams
+        [Authorizee(Roles = "Admin")]
         public ActionResult Index()
         {
             var exams = db.Exams
@@ -26,6 +27,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Exams/Details/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +45,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Exams/Create
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create()
         {
             var listBatchId = db.Exams.Select(x => x.BatchId).ToArray();
@@ -56,6 +59,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,BatchId,DateExam,StartTime,Status")] Exam exam)
         {
             Batch batch = db.Batches.Find(exam.BatchId);
@@ -82,6 +86,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Exams/Edit/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -102,6 +107,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,BatchId,DateExam,StartTime,Status")] Exam exam)
         {
             if (ModelState.IsValid)
@@ -115,6 +121,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // GET: Admin/Exams/Delete/5
+        [Authorizee(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -132,6 +139,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // POST: Admin/Exams/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Exam exam = db.Exams.Find(id);
@@ -149,6 +157,8 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             base.Dispose(disposing);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult UpdateExamDetails(List<ExamDetail> exam)
         {
             try

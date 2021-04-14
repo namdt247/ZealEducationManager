@@ -76,6 +76,7 @@ namespace Zeal_Institute.Controllers
             if (user != null)
             {
                 Response.Cookies["UserName"].Value = user.FullName;
+                Response.Cookies["UserName"].Expires = (DateTime.Now).AddDays(7);
                 var ident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                 AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, ident);
                 return Json(new { Success = true }, JsonRequestBehavior.AllowGet);

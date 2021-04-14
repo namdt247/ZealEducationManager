@@ -27,19 +27,19 @@
                 </div>
 
                 <div class="row">
-                    @foreach (var item in Model)
+                    @for (var i = Model.Count() - 1; i >= 0; i--)
                     {
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="course-post">
                                 <div class="course-thumbnail-holder">
                                     <a>
-                                        <img style="width: 244px; height: 137px" src="@item.Thumbnail" alt="">
+                                        <img style="width: 244px; height: 137px" src="@Model.ElementAt(i).Thumbnail" alt="">
                                     </a>
                                 </div>
                                 <div class="course-content-holder">
                                     <div style="width: 244px; height: 154px" class="course-content-main">
                                         <h2 class="course-title">
-                                            <a href="@Url.Action("Detail", "Course", new {id = item.Id })">@item.Description</a>
+                                            <a href="@Url.Action("Detail", "Course", new {id = Model.ElementAt(i).Id })">@Model.ElementAt(i).Description</a>
                                         </h2>
                                         <div class="course-rating-teacher">
                                             <div class="star-rating has-ratings" title="Rated 5.00 out of 5">
@@ -48,7 +48,7 @@
                                                     <span class="votes-number">1 Votes</span>
                                                 </span>
                                             </div>
-                                            <a href="@Url.Action("Detail", "Course", new {id = item.Id })" class="course-loop-teacher">Detail</a>
+                                            <a href="@Url.Action("Detail", "Course", new {id = Model.ElementAt(i).Id })" class="course-loop-teacher">Detail</a>
                                         </div>
                                     </div>
                                     <div class="course-content-bottom">
@@ -57,7 +57,7 @@
                                             <span>64</span>
                                         </div>
                                         <div class="course-price">
-                                            <span>@item.Price $</span>
+                                            <span>@Model.ElementAt(i).Price $</span>
                                         </div>
                                     </div>
                                 </div>

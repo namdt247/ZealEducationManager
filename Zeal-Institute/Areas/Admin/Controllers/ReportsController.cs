@@ -17,6 +17,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         private RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
         // GET: Admin/Reports
         // Reports financial
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListFee()
         {
             var ListFee = db.Payments
@@ -27,6 +28,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListFee);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListFine()
         {
             var ListFine = db.Payments
@@ -37,6 +39,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListFine);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListOutstanding()
         {
             var ListOutstanding = db.Payments
@@ -47,6 +50,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListOutstanding);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListReminder()
         {
             var ListReminder = db.Reminders
@@ -56,6 +60,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListReminder);
         }
 
+        [Authorizee(Roles = "Admin")]
         // Reports batch
         public ActionResult EndBatches()
         {
@@ -67,6 +72,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListEndBatches);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult StartBatches()
         {
             var ListStartBatches = db.Batches
@@ -78,6 +84,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // Reports student
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListDiscount()
         {
             var ListDiscount = db.Discounts
@@ -87,6 +94,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListDiscount);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListStudent()
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
@@ -100,6 +108,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListStudent);
         }
 
+        [Authorizee(Roles = "Admin")]
         public ActionResult ListCertificate()
         {
             var ListCertificate = db.Certificates
@@ -109,6 +118,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(ListCertificate);
         }
         // GET: Admin/Reports/DetailsCertificate/1
+        [Authorizee(Roles = "Admin")]
         public ActionResult DetailsCertificate(int? id)
         {
             if (id == null)
@@ -124,6 +134,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorizee(Roles = "Admin")]
         public ActionResult DetailsCertificate([Bind(Include = "Id,ApplicationUserId,BatchId,RegistrationDate,ReceivedDate,Note,Status")] Certificate certificate)
         {
             if (ModelState.IsValid)
@@ -138,6 +149,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         }
 
         // detail ending batch
+        [Authorizee(Roles = "Admin")]
         public ActionResult DetailsEnding(int? id)
         {
             if (id == null)
@@ -161,6 +173,7 @@ namespace Zeal_Institute.Areas.Admin.Controllers
             return View(batch);
         }
         // detail ending batch
+        [Authorizee(Roles = "Admin")]
         public ActionResult DetailsStart(int? id)
         {
             if (id == null)
