@@ -45,7 +45,9 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         // GET: Admin/Exams/Create
         public ActionResult Create()
         {
-            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name");
+            var listBatchId = db.Exams.Select(x => x.BatchId).ToArray();
+            var listBatch = db.Batches.Where(x => !listBatchId.Contains(x.Id));
+            ViewBag.BatchId = new SelectList(listBatch, "Id", "Name");
             return View();
         }
 
@@ -151,17 +153,22 @@ namespace Zeal_Institute.Areas.Admin.Controllers
         {
             try
             {
+                var ExamId = 0;
                 foreach (var item in exam)
                 {
                     var objExamDetail = new ExamDetail() { ExamId = item.ExamId, ApplicationUserId = item.ApplicationUserId, Mark = item.Mark, Note = "" };
                     db.Entry(objExamDetail).State = EntityState.Modified;
+                    if (ExamId == 0)
+                    {
+                        ExamId = item.ExamId;
+                    }
                 }
-                //Exam findExam = db.Exams.Find(idExam);
-                //if (findExam.Status != "DONE")
-                //{
-                //    findExam.Status = Exam.ExamStatus.DONE;
-                //    db.Entry(findExam).State = EntityState.Modified;
-                //}
+                Exam currentExam = db.Exams.Find(ExamId);
+                if (currentExam != null && currentExam.Status != Exam.ExamStatus.DONE)
+                {
+                    currentExam.Status = Exam.ExamStatus.DONE;
+                    db.Entry(currentExam).State = EntityState.Modified;
+                }
                 db.SaveChanges();
                 ViewData["ListExamStudent"] = exam;
                 return Json(new { result = exam }, JsonRequestBehavior.AllowGet);

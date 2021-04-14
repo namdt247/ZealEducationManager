@@ -78,8 +78,8 @@
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Asset/Admin/vendor/select2/js/select2.min.js"></script>
     <script type="text/javascript">
+        var listStudent = [];
         $(document).ready(function () {
-            var listStudent = [];
             $('#liststudent').select2({
                 placeholder: "Student",
                 closeOnSelect: false,
@@ -98,11 +98,11 @@
                     }
                 }
             }).on('select2:select', function (e) {
-                var data = e.params.data;
+                let data = e.params.data;
                 listStudent.push(data.id);
                 $('#liststudentHidden').val(listStudent);
             }).on('select2:unselect', function (e) {
-                var data = e.params.data;
+                let data = e.params.data;
                 listStudent = listStudent.filter(function (e) { return e != data.id });
                 $('#liststudentHidden').val(listStudent);
             });
@@ -115,6 +115,7 @@
                 type: "GET",
                 data: { id: $('#idEdit').val() },
                 success: function (result, status, xhr) {
+                    listStudent = [...result];
                     setTimeout(function () {
                         if (result && result.length > 0) {
                             $('#liststudentHidden').val(result);
